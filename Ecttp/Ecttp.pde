@@ -9,8 +9,8 @@ float rainRespawnTime;
 ArrayList<Rain> rainList;
 
 Player player1;
-
 Enemy enemy1;
+UI UI;
 
 //--------------------------
 
@@ -25,6 +25,7 @@ void setup(){
   rainList = new ArrayList<Rain>();
   player1 = new Player();
   enemy1 = new Enemy();
+  UI = new UI();
 }
 
 void draw(){
@@ -35,6 +36,7 @@ void draw(){
   Rain();
   player1.Update();
   enemy1.Update();
+  UI.update();
 }
 
 //-----------------------------

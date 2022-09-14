@@ -2,7 +2,7 @@ class Rain{
   
   boolean canBeDeleted = false;
   
-  float xPos = random(100, 1500);
+  float xPos = random(10, displayWidth - 10);
   float yPos = random(-5000, -400);
   float rainWidth = 10;
   float rainHeight = 50;
