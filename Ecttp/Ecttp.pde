@@ -2,6 +2,8 @@
 //Ivar Nuij
 
 //Classes
+UI UI;
+
 //Rain
 float rainAmount = 1000;
 float rainRespawnTimeAmount = 600;
@@ -10,7 +12,7 @@ ArrayList<Rain> rainList;
 
 Player player1;
 Enemy enemy1;
-UI UI;
+CubePhysics cubePhysics1;
 
 //--------------------------
 
@@ -22,10 +24,14 @@ void setup(){
   background(255);
   noStroke();
   
+  //Instance Classes
+  UI = new UI();
+  
   rainList = new ArrayList<Rain>();
+  
   player1 = new Player();
   enemy1 = new Enemy();
-  UI = new UI();
+  cubePhysics1 = new CubePhysics();
 }
 
 void draw(){
@@ -33,15 +39,17 @@ void draw(){
   clear();
   background(255);
   
-  Rain();
+  UI.update();
+  
+  RainList();
   player1.Update();
   enemy1.Update();
-  UI.update();
+  cubePhysics1.update();
 }
 
 //-----------------------------
 
-void Rain(){
+void RainList(){
 
     for(int i=0; i<= rainList.size() - 1; i += 1){
     Rain currentRainDrop = rainList.get(i);
