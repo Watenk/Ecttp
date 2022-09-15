@@ -1,9 +1,10 @@
 class Player{
 
-  float xPos = 1000;
-  float yPos = 900;
-  float playerWidth = 80;
-  float playerHeight = 150;
+  float playerWidth = 220;
+  float playerHeight = 115;
+  
+  float xPos = displayWidth / 2;
+  float yPos = displayHeight - playerHeight;
   
   Player() {
   }

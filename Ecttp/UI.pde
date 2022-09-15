@@ -14,7 +14,7 @@ class UI{
     
       if (key == ' '){
         
-      cubePhysics1.AddForce();
+      //cubePhysics1.AddForce();
      } 
     }
   }
