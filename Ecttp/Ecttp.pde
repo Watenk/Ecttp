@@ -1,6 +1,21 @@
 //Ecttp les 02
 //Ivar Nuij
 
+float FPS = 144;
+float updateSpeed = 1; // min 0.5, max 5 - otherwise lag
+
+float frameMillis;
+float previousFrameMillis;
+float currentFrameRate;
+public float deltaTime;
+
+float frameCounterSmoothAmount = 10; 
+int frameCounter;
+FloatList frameMillisList;
+public float smoothFrameRate;
+
+float drawDeltaTime;
+
 //Classes
 UI UI;
 
@@ -22,13 +37,15 @@ Enemy enemy1;
 void setup(){
   
   //Game Settings
-  frameRate(60);
+  frameRate(FPS);
   fullScreen(P2D);
   background(255);
   smooth();
   
   //Instance Classes
   UI = new UI();
+  
+  frameMillisList = new FloatList();
   
   rainList = new ArrayList<Rain>();
   cubePhysicsList = new ArrayList<CubePhysics>();
@@ -40,7 +57,20 @@ void setup(){
 }
 
 void draw(){
- 
+  
+  CalcFrameRate();
+  CalcDeltaTime();
+  
+  //FixedUpdate
+  drawDeltaTime += deltaTime;
+  if (drawDeltaTime >= 1){
+    FixedUpdate();
+    drawDeltaTime = 0;
+  }
+}
+
+void FixedUpdate(){
+  
   background(255);
   
   UI.update();
@@ -48,12 +78,36 @@ void draw(){
   noStroke();
   RainUpdate();
   stroke(1);
+  
   CubePhysicsUpdate();
   player1.Update();
   enemy1.Update();
 }
 
 //-----------------------------
+
+void CalcFrameRate(){
+  //currentFrameRate
+  frameMillis = millis() - previousFrameMillis;
+  previousFrameMillis = millis();
+  currentFrameRate = 1000 / frameMillis;
+  
+  //smoothFrameRate
+  frameMillisList.set(frameCounter, frameMillis);
+  if (frameCounter == frameCounterSmoothAmount){    
+    
+    float frameTotal = frameMillisList.sum();
+    smoothFrameRate = 1000 / (frameTotal / frameCounterSmoothAmount);
+   
+    frameMillisList.clear();
+    frameCounter = 0;
+  }
+  frameCounter += 1;
+}
+
+void CalcDeltaTime(){
+  deltaTime = (updateSpeed * 60) / currentFrameRate;
+}
 
 void RainUpdate(){
     for(int i=0; i <= rainList.size() - 1; i += 1){
@@ -85,6 +139,14 @@ void CubePhysicsUpdate(){
     CubePhysics currentCube = cubePhysicsList.get(i);
     
     currentCube.update();
+  }
+  
+  if (UI.spacebar == true){
+    for(int i=0; i <= cubePhysicsList.size() - 1; i += 1){
+      CubePhysics currentCube = cubePhysicsList.get(i);
+      
+      currentCube.AddForce();
+    }
   }
 }
 

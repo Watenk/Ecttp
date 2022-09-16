@@ -1,21 +1,33 @@
 class UI{
   
+  public boolean spacebar;
+  
   UI() {
   }
   
   void update(){
     
-    if (keyPressed){
+    //Performance
+    text(int(smoothFrameRate), 10, 20);
     
-      if (key == ESC){
-    
-      exit();
+    if (smoothFrameRate < 50){
+      text("Game Slowed Down", 100, 20);
+      
+      if (smoothFrameRate < 30){
+        text("!", 215, 20);
       }
-    
-      if (key == ' '){
-        
-      //cubePhysics1.AddForce();
-     } 
     }
+    
+    //Keys
+    if (key == ESC){
+    exit();
+    }
+  
+    if (key == ' '){
+       spacebar = true; 
+     }
+     else{
+       spacebar = false;
+     }
   }
 }

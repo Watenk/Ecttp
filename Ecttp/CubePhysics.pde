@@ -9,7 +9,7 @@ class CubePhysics{
   float yPos;
   float cubeWidth = 100;
   float cubeHeight = 100;
-  float cubeScale = 2;
+  float cubeScale = 1;
  
   float xSpeed;
   float ySpeed;
@@ -50,7 +50,7 @@ class CubePhysics{
   //-------------------------------------
   
   public void AddForce(){
-    ySpeed = -10;
+    ySpeed = -5;
   }
   
   void CalcScale(){
@@ -69,7 +69,7 @@ class CubePhysics{
       
       if (ySpeed >= 0.01){
         float newYSpeed;
-        newYSpeed = ySpeed / impactDeceleration;
+        newYSpeed = ySpeed / impactDeceleration * random(0.9, 1.1);
         
         yPos = displayHeight - cubeHeight;
         ySpeed = 0;
