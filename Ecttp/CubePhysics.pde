@@ -36,7 +36,7 @@ class CubePhysics{
   void update() {
     
     CalcGroundCollision();
-    //CalcBoxCollision(); - WIP
+    CalcBoxCollision(); //- WIP
     CalcGravity();
     
     CalcSpeed();
@@ -44,13 +44,17 @@ class CubePhysics{
     
     CalcPoints();
     DrawLines();
-    DrawDebugPoints();
+    //DrawDebugPoints();
   }
   
   //-------------------------------------
   
   public void AddForce(){
     ySpeed = -5;
+  }
+  
+  void CalcBoxCollision(){
+    
   }
   
   void CalcScale(){
@@ -63,7 +67,7 @@ class CubePhysics{
   }
   
   void CalcGroundCollision(){
-      if (yPos3 >= displayHeight || yPos4 >= displayHeight){
+    if (yPos3 >= displayHeight || yPos4 >= displayHeight){
       
       isTouchingGround = true;
       

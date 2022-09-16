@@ -1,24 +1,22 @@
-//Ecttp les 02
+//Ecttp les 03
 //Ivar Nuij
 
-float FPS = 144;
-float updateSpeed = 1; // min 0.5, max 5 - otherwise lag
+float FPS = 1000; // lower than 60 causes slowdown
+float updateSpeed = 60; //60 Times a second
+float physicsUpdateSpeed = 1; // Higher is slower
 
+//Time
+float frameCounterSmoothAmount = 20; 
 float frameMillis;
 float previousFrameMillis;
 float currentFrameRate;
-public float deltaTime;
-
-float frameCounterSmoothAmount = 10; 
+float drawDeltaTime;
 int frameCounter;
 FloatList frameMillisList;
+public float deltaTime;
 public float smoothFrameRate;
 
-float drawDeltaTime;
-
 //Classes
-UI UI;
-
 //Rain
 ArrayList<Rain> rainList;
 float rainAmount = 1000;
@@ -29,7 +27,8 @@ float rainRespawnTime;
 ArrayList<CubePhysics> cubePhysicsList;
 float cubePhysicsAmount = 10;
 
-Player player1;
+UI UI;
+public Player player1;
 Enemy enemy1;
 
 //--------------------------
@@ -63,17 +62,18 @@ void draw(){
   
   //FixedUpdate
   drawDeltaTime += deltaTime;
-  if (drawDeltaTime >= 1){
+  if (drawDeltaTime >= physicsUpdateSpeed){
     FixedUpdate();
     drawDeltaTime = 0;
   }
+  
+  UI.update();
+  UI.draw();
 }
 
 void FixedUpdate(){
   
-  background(255);
-  
-  UI.update();
+  background(150);
   
   noStroke();
   RainUpdate();
@@ -106,7 +106,7 @@ void CalcFrameRate(){
 }
 
 void CalcDeltaTime(){
-  deltaTime = (updateSpeed * 60) / currentFrameRate;
+  deltaTime = updateSpeed / currentFrameRate;
 }
 
 void RainUpdate(){
