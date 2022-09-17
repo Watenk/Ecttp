@@ -9,7 +9,7 @@ class CubePhysics{
   float yPos;
   float cubeWidth = 100;
   float cubeHeight = 100;
-  float cubeScale = 1;
+  float cubeScale = 0.5;
  
   float xSpeed;
   float ySpeed;
@@ -35,8 +35,8 @@ class CubePhysics{
 
   void update() {
     
-    CalcGroundCollision();
-    CalcBoxCollision(); //- WIP
+    WallCollision();
+    BoxCollision(); //- WIP
     CalcGravity();
     
     CalcSpeed();
@@ -53,7 +53,7 @@ class CubePhysics{
     ySpeed = random(-5, -8);
   }
   
-  void CalcBoxCollision(){
+  void BoxCollision(){
     
   }
   
@@ -66,7 +66,7 @@ class CubePhysics{
     cubeHeight *= cubeScale;
   }
   
-  void CalcGroundCollision(){
+  void WallCollision(){
     if (yPos3 >= displayHeight || yPos4 >= displayHeight){
       
       isTouchingGround = true;

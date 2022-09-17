@@ -1,7 +1,7 @@
 //Ecttp les 03
 //Ivar Nuij
 
-float FPS = 300; // lower than 60 causes slowdown
+float FPS = 144; // lower than 60 causes slowdown
 float updateSpeed = 60; //60 Times a second
 float physicsUpdateSpeed = 1; // Higher is slower
 
@@ -13,7 +13,7 @@ public boolean s;
 public boolean a;
 
 //Time
-float frameCounterSmoothAmount = 20; 
+float frameCounterSmoothAmount = 20; //Sum of amount of frames
 float frameMillis;
 float previousFrameMillis;
 float currentFrameRate;
@@ -31,9 +31,10 @@ float rainRespawnTime;
 
 //CubesPhysics
 ArrayList<CubePhysics> cubePhysicsList;
-float cubePhysicsAmount = 10;
+float cubePhysicsAmount = 1;
 
 UI UI;
+GameManager gameManager1;
 public Player player1;
 Enemy enemy1;
 
@@ -48,6 +49,7 @@ void setup(){
   smooth();
   
   //Instance Classes
+  gameManager1 = new GameManager();
   UI = new UI();
   
   frameMillisList = new FloatList();
@@ -79,6 +81,8 @@ void draw(){
 void FixedUpdate(){
   
   background(150);
+  
+  gameManager1.update();
   
   noStroke();
   RainUpdate();
@@ -199,11 +203,15 @@ void CubePhysicsUpdate(){
   //CubeCollision
   for (int i=0; i <= cubePhysicsList.size() - 1; i += 1){
     CubePhysics currentCube = cubePhysicsList.get(i);
-    
+ 
     for (int j=0; j <= cubePhysicsList.size() - 1; j += 1){
       CubePhysics currentCube2 = cubePhysicsList.get(i);
       
-      
+      if (currentCube2.xPos > currentCube.xPos && currentCube2.yPos > currentCube.yPos){ 
+        if (currentCube2.xPos < currentCube.xPos4 && currentCube2.yPos < currentCube.yPos4){
+          
+        }
+      }
     }
   }
   
@@ -219,6 +227,6 @@ void CubePhysicsUpdate(){
 void AddCubePhysics() {
 
   for(int i=0; i <= cubePhysicsAmount; i += 1){
-    cubePhysicsList.add(new CubePhysics(random(0, displayWidth), random(-5000, 0)));
+    cubePhysicsList.add(new CubePhysics(random(0, displayWidth), random(0, 400)));
   }
 }
