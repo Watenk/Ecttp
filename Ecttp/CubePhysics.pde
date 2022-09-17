@@ -50,7 +50,7 @@ class CubePhysics{
   //-------------------------------------
   
   public void AddForce(){
-    ySpeed = -5;
+    ySpeed = random(-5, -8);
   }
   
   void CalcBoxCollision(){

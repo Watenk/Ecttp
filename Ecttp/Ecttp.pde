@@ -1,9 +1,16 @@
 //Ecttp les 03
 //Ivar Nuij
 
-float FPS = 1000; // lower than 60 causes slowdown
+float FPS = 300; // lower than 60 causes slowdown
 float updateSpeed = 60; //60 Times a second
 float physicsUpdateSpeed = 1; // Higher is slower
+
+//Input
+public boolean spacebar;
+public boolean w;
+public boolean d;
+public boolean s;
+public boolean a;
 
 //Time
 float frameCounterSmoothAmount = 20; 
@@ -16,7 +23,6 @@ FloatList frameMillisList;
 public float deltaTime;
 public float smoothFrameRate;
 
-//Classes
 //Rain
 ArrayList<Rain> rainList;
 float rainAmount = 1000;
@@ -68,7 +74,6 @@ void draw(){
   }
   
   UI.update();
-  UI.draw();
 }
 
 void FixedUpdate(){
@@ -85,6 +90,55 @@ void FixedUpdate(){
 }
 
 //-----------------------------
+
+void keyPressed(){
+  if (key == 'a'){
+    a = true;
+  }
+    
+  if (key == 'd'){
+    d = true;
+  }
+      
+  if (key == 'w'){
+    w = true;
+  }
+      
+  if (key == 's'){
+    s = true;
+  }
+    
+  if (key == ' '){
+    spacebar = true; 
+  }
+    
+    
+  if (key == ESC){
+    exit();
+  }
+}
+
+void keyReleased(){
+  if (key == 'a'){
+    a = false;
+  }
+    
+  if (key == 'd'){
+    d = false;
+  }
+      
+  if (key == 'w'){
+    w = false;
+  }
+      
+  if (key == 's'){
+    s = false;
+  }
+    
+  if (key == ' '){
+    spacebar = false; 
+  }
+}
 
 void CalcFrameRate(){
   //currentFrameRate
@@ -135,13 +189,25 @@ void AddRain() {
 }
 
 void CubePhysicsUpdate(){
+  //Update
   for(int i=0; i <= cubePhysicsList.size() - 1; i += 1){
     CubePhysics currentCube = cubePhysicsList.get(i);
     
     currentCube.update();
   }
   
-  if (UI.spacebar == true){
+  //CubeCollision
+  for (int i=0; i <= cubePhysicsList.size() - 1; i += 1){
+    CubePhysics currentCube = cubePhysicsList.get(i);
+    
+    for (int j=0; j <= cubePhysicsList.size() - 1; j += 1){
+      CubePhysics currentCube2 = cubePhysicsList.get(i);
+      
+      
+    }
+  }
+  
+  if (spacebar == true){
     for(int i=0; i <= cubePhysicsList.size() - 1; i += 1){
       CubePhysics currentCube = cubePhysicsList.get(i);
       
