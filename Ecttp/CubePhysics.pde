@@ -10,7 +10,7 @@ class CubePhysics{
   float yPos;
   float cubeWidth = 100;
   float cubeHeight = 100;
-  float cubeScale = 0.5;
+  float cubeScale = 0.4;
  
   float xSpeed;
   float ySpeed;

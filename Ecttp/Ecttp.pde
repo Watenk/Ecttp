@@ -1,6 +1,9 @@
 //Ecttp les 03
 //Ivar Nuij
 
+//Idea List
+//Weather / Wind
+
 //GameSettings
 float FPS = 144; // lower than 60 causes slowdown
 float updateSpeed = 60; //60 Times a second
@@ -26,7 +29,7 @@ float rainRespawnTime;
 
 //CubesPhysics
 CubePhysicsManager CubePhysicsManager;
-public float cubePhysicsAmount = 500;
+public float cubePhysicsAmount = 1000; // max 1000
 public ArrayList<CubePhysics> cubePhysicsList;
 
 //Other
@@ -37,6 +40,9 @@ Enemy enemy1;
 
 //Sprites
 public PImage rainDrop;
+
+//Animation
+public PImage[] rainSplash = new PImage[20];
 
 //Input
 public boolean spacebar;
@@ -68,6 +74,9 @@ void setup(){
   
   //Sprites
   rainDrop = loadImage("sprites/rainDrop.png");
+  
+  //Animations
+  AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
   
   CubePhysicsManager.AddCubes();
 }
@@ -180,4 +189,11 @@ void CalcFrameRate(){
 
 void CalcDeltaTime(){
   deltaTime = updateSpeed / currentFrameRate;
+}
+
+void AddAnimation(PImage[] frames, String sprite, int frameAmount){
+  for (int i=0; i < frameAmount; i += 1){
+    String fileName = sprite + nf(i + 1, 4) + ".png";
+    frames[i] = loadImage(fileName);
+  }
 }

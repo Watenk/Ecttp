@@ -1,7 +1,7 @@
 class Rain{
   
   boolean canBeDeleted;
-  boolean startRainSplash;
+  boolean animation;
   
   float xPos = random(10, displayWidth - 10);
   float yPos = random(-5000, -400);
@@ -13,12 +13,14 @@ class Rain{
   
   float alpha = random(10, 40);
   
-  float animationTimer;
-  int animationFrameCounter = 0;
+  Animation Animation;
+  float animationSize = random(25, 75);
+  float animationXPos;
   
   //------------------------------
   
   Rain(){
+    Animation = new Animation();
   }
   
   void Update(){
@@ -27,10 +29,10 @@ class Rain{
     xPos += xSpeed;
     yPos += ySpeed;
     
-    collision();
+    Collision();
     
-    if (startRainSplash == true){
-      RainSplash();
+    if (animation == true){
+      SplashAnimation();
     }
     
     //Draw
@@ -40,32 +42,24 @@ class Rain{
   
   //--------------------------------
   
-  void collision(){
+  void Collision(){
   
     if(xPos > displayWidth || xPos <= 0){
       xSpeed *= -1;
     }
     
     if(yPos > displayHeight){
-      startRainSplash = true;
+      animation = true;
+      animationXPos = xPos;
+      yPos = -2000;
     }
   }
   
-  void RainSplash(){
-    
-    if (animationFrameCounter == 20){
+  void SplashAnimation(){
+    Animation.Play(rainSplash, 20, animationXPos, displayHeight - animationSize, animationSize, animationSize);
+      
+    if (Animation.isDone == true){
       canBeDeleted = true;
-    }
-    
-    ySpeed = 0;
-    yPos = displayHeight - rainHeight;
-      
-    animationTimer += 1;
-    
-    if (animationTimer == 2){
-      
-      animationTimer = 0;
-      animationFrameCounter += 1;
     }
   }
 }

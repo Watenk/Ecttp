@@ -1,6 +1,10 @@
 class RainManager{
   
+  Animation Animation;
+  
   RainManager(){
+    
+    Animation = new Animation();
   }
   
   void update(){
@@ -8,12 +12,12 @@ class RainManager{
       Rain currentRainDrop = rainList.get(i);
     
       currentRainDrop.Update();
-    
+      
       if(currentRainDrop.canBeDeleted == true){
         rainList.remove(i);
       }
     }
-  
+    
     rainRespawnTime -= 1;
     if (rainRespawnTime <= 0){
       Add();
