@@ -1,4 +1,4 @@
-class Player{
+class Player1{
   
   float playerScale = 0.5;
   float playerWidth = 50 * playerScale;
@@ -31,7 +31,7 @@ class Player{
   
   //-----------------------------------
   
-  Player() {
+  Player1() {
     CalcPoints();
   }
     
@@ -44,7 +44,7 @@ class Player{
     CalcSpeed();
     
     CalcPoints();
-    DrawLines();
+    DrawPlayer();
     //DrawDebugPoints();
   }
   
@@ -126,11 +126,14 @@ class Player{
     }
   }
   
-  void DrawLines(){
+  void DrawPlayer(){
     line(xPos, yPos, xPos2, yPos2);
     line(xPos2, yPos2, xPos4, yPos4);
     line(xPos4, yPos4, xPos3, yPos3);
     line(xPos3, yPos3, xPos, yPos);
+    
+    fill(0, 100, 0, 255);
+    rect(xPos, yPos, playerWidth, playerHeight);
   }
   
   void Inputs(){

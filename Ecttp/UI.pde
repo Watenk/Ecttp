@@ -4,7 +4,6 @@ class UI{
   }
   
   void update(){
-    
     //Performance
     if (smoothFrameRate < 30){
       fill(255, 0, 0);

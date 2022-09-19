@@ -1,8 +1,9 @@
 class CubePhysics{
   
   float gravity = 25;
-  float acceleration = 0.2; 
+  float acceleration = random(0.18, 0.22); 
   float impactDeceleration = 2; 
+  
   boolean isTouchingGround = false;
   
   float xPos;
@@ -36,18 +37,18 @@ class CubePhysics{
   void update() {
     
     WallCollision();
-    BoxCollision(); //- WIP
-    CalcGravity();
     
     CalcSpeed();
     CalcScale();
     
     CalcPoints();
-    DrawLines();
+    DrawCube();
     //DrawDebugPoints();
   }
   
   //-------------------------------------
+  
+
   
   public void AddForce(){
     ySpeed = random(-5, -8);
@@ -67,21 +68,16 @@ class CubePhysics{
   }
   
   void WallCollision(){
-    if (yPos3 >= displayHeight || yPos4 >= displayHeight){
+    if (yPos3 >= displayHeight - 1|| yPos4 >= displayHeight - 1){
       
       isTouchingGround = true;
       
-      if (ySpeed >= 0.01){
-        float newYSpeed;
-        newYSpeed = ySpeed / impactDeceleration * random(0.9, 1.1);
+      float newYSpeed;
+      newYSpeed = ySpeed / impactDeceleration * random(0.9, 1.1);
         
-        yPos = displayHeight - cubeHeight;
-        ySpeed = 0;
-        ySpeed -= newYSpeed;
-      }
-      else{
-        ySpeed = 0;
-      }
+      yPos = displayHeight - cubeHeight;
+      ySpeed = 0;
+      ySpeed -= newYSpeed;
     }
     else{
       isTouchingGround = false;
@@ -95,6 +91,10 @@ class CubePhysics{
   }
   
   void CalcSpeed(){
+    if (ySpeed <= 0.1 && ySpeed >= -0.1){
+      ySpeed = 0;
+    }
+    
     xPos += xSpeed;
     yPos += ySpeed;
   }
@@ -119,11 +119,14 @@ class CubePhysics{
     yPos5 += cubeHeight / 2;
   }
   
-  void DrawLines(){
+  void DrawCube(){
     line(xPos, yPos, xPos2, yPos2);
     line(xPos2, yPos2, xPos4, yPos4);
     line(xPos4, yPos4, xPos3, yPos3);
     line(xPos3, yPos3, xPos, yPos);
+    
+    fill(100, 100, 100, 255);
+    rect(xPos, yPos, cubeWidth, cubeHeight);
   }
   
   void DrawDebugPoints(){
