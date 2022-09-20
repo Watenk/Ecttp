@@ -5,7 +5,7 @@ class CubePhysicsManager{
   CubePhysicsManager(){
   }
   
-  void update(){
+  void Update(){
    //Gravity   
    for(int i=0; i <= cubePhysicsList.size() - 1; i += 1){
       CubePhysics currentCube = cubePhysicsList.get(i);

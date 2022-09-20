@@ -1,10 +1,10 @@
 class Player1{
   
   float playerScale = 0.5;
-  float playerWidth = 50 * playerScale;
-  float playerHeight = 115 * playerScale;
+  float playerWidth = 250 * playerScale;
+  float playerHeight = 50 * playerScale;
   float decelerationAmount = 0.5;
-  float movementSpeed = 10;
+  float movementSpeed = 5;
   
   boolean touchingRoof;
   boolean touchingWallRight;

@@ -10,7 +10,7 @@ class CubePhysics{
   float yPos;
   float cubeWidth = 100;
   float cubeHeight = 100;
-  float cubeScale = 0.4;
+  float cubeScale = 0.2;
  
   float xSpeed;
   float ySpeed;
@@ -23,9 +23,6 @@ class CubePhysics{
   
   float xPos4; // Pos 4 is the right bottom point of rect
   float yPos4; 
-  
-  float xPos5; // Pos 5 is the middle of the rect
-  float yPos5;
 
   //----------------------------------
   
@@ -52,10 +49,6 @@ class CubePhysics{
   
   public void AddForce(){
     ySpeed = random(-5, -8);
-  }
-  
-  void BoxCollision(){
-    
   }
   
   void CalcScale(){
@@ -95,7 +88,7 @@ class CubePhysics{
       ySpeed = 0;
     }
     
-    xPos += xSpeed;
+    xPos += xSpeed * windDirectionX * cubePhysicsWeight;
     yPos += ySpeed;
   }
   
@@ -107,16 +100,12 @@ class CubePhysics{
     yPos3 = yPos;
     xPos4 = xPos;
     yPos4 = yPos;
-    xPos5 = xPos;
-    yPos5 = yPos;
     
     //points positions
     xPos2 += cubeWidth;
     yPos3 += cubeHeight;
     xPos4 += cubeWidth;
     yPos4 += cubeHeight;
-    xPos5 += cubeWidth / 2;
-    yPos5 += cubeHeight / 2;
   }
   
   void DrawCube(){
@@ -135,6 +124,5 @@ class CubePhysics{
     rect(xPos2, yPos2, 2, 2);
     rect(xPos3, yPos3, 2, 2);
     rect(xPos4, yPos4, 2, 2);
-    rect(xPos5, yPos5, 2, 2);
   }
 }

@@ -1,8 +1,18 @@
 //Ecttp les 03
 //Ivar Nuij
 
-//Idea List
-//Weather / Wind
+//Idea List--------
+//Weather / Wind - WIP
+//Time (day / night)
+//Different sceen size compat
+//Weight - WIP
+//2-player
+
+//To Do
+//Collision with player
+//performance improvements (Rain, Collision)
+
+//-----------------
 
 //GameSettings
 float FPS = 144; // lower than 60 causes slowdown
@@ -20,16 +30,24 @@ FloatList frameMillisList;
 public float deltaTime;
 public float smoothFrameRate = 100;
 
+//Wind
+Wind Wind;
+public float windChangeAmount = 0.2;
+public float windChangeTime = 60;
+public float rainWeight = 1.5; // in procenten
+public float windDirectionX;
+
 //Rain
 RainManager RainManager;
-public float rainAmount = 100;
+public float rainAmount = 500;
 public float rainRespawnTimeAmount = 120;
 ArrayList<Rain> rainList;
 float rainRespawnTime;
 
 //CubesPhysics
 CubePhysicsManager CubePhysicsManager;
-public float cubePhysicsAmount = 1000; // max 1000
+public float cubePhysicsAmount = 10; // max 1000
+public float cubePhysicsWeight = 0.5; // in procenten
 public ArrayList<CubePhysics> cubePhysicsList;
 
 //Other
@@ -60,10 +78,11 @@ void setup(){
   smooth(); // Anti-Ailiasing
   
   //Instance Classes
-  RainManager = new RainManager();
   CubePhysicsManager = new CubePhysicsManager();
   GameManager = new GameManager();
+  Wind = new Wind();
   UI = new UI();
+  RainManager = new RainManager();
   Player1 = new Player1();
   enemy1 = new Enemy();
   
@@ -86,13 +105,14 @@ void FixedUpdate(){
   
   background(150);
   
-  GameManager.update();
+  GameManager.Update();
+  Wind.Update();
   
   noStroke();
-  RainManager.update();
+  RainManager.Update();
   stroke(1);
   
-  CubePhysicsManager.update();
+  CubePhysicsManager.Update();
   Player1.Update();
   enemy1.Update();
 }
@@ -113,11 +133,9 @@ void draw(){
   UI.update();
 }
 
-
-
 //-----------------------------
 
-//Inputs - Works only in class with draw()
+//Inputs - Works only in a class with draw()
 void keyPressed(){
   if (key == 'a'){
     a = true;

@@ -7,7 +7,7 @@ class RainManager{
     Animation = new Animation();
   }
   
-  void update(){
+  void Update(){
     for(int i=0; i <= rainList.size() - 1; i += 1){
       Rain currentRainDrop = rainList.get(i);
     
