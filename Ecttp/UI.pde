@@ -11,7 +11,7 @@ class UI{
       text("Game Slowed", 40, 20);
       text("Considerably", 122, 20);
     }
-    if (smoothFrameRate <= 50 && smoothFrameRate >= 30){
+    if (smoothFrameRate <= 60 && smoothFrameRate >= 30){
       fill(215, 115, 0);
       text(int(smoothFrameRate), 10, 20);
       text("Game Slowed", 40, 20);

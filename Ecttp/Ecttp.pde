@@ -2,15 +2,14 @@
 //Ivar Nuij
 
 //Idea List--------
-//Weather / Wind - WIP
+//Weather
 //Time (day / night)
 //Different sceen size compat
-//Weight - WIP
 //2-player
 
 //To Do
 //Collision with player
-//performance improvements (Rain, Collision)
+//performance improvements (Rain, Collision, improve fixedUpdate())
 
 //-----------------
 
@@ -32,10 +31,10 @@ public float smoothFrameRate = 100;
 
 //Wind
 Wind Wind;
-public float windChangeAmount = 0.2;
-public float windChangeTime = 60;
-public float rainWeight = 1.5; // in procenten
-public float windDirectionX;
+public float windChangeAmount = 1;
+public float windChangeTime = 30;
+public float rainWeight = 1;
+public float windSpeedX;
 
 //Rain
 RainManager RainManager;
@@ -46,8 +45,8 @@ float rainRespawnTime;
 
 //CubesPhysics
 CubePhysicsManager CubePhysicsManager;
-public float cubePhysicsAmount = 10; // max 1000
-public float cubePhysicsWeight = 0.5; // in procenten
+public float cubePhysicsAmount = 100; // max 1000
+public float cubePhysicsWeight = 10;
 public ArrayList<CubePhysics> cubePhysicsList;
 
 //Other

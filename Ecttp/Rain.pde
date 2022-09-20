@@ -8,7 +8,7 @@ class Rain{
   float rainWidth = 50;
   float rainHeight = 50;
   
-  float xSpeed = random(-2, 2);
+  float xSpeed = random(-1, 1);
   float ySpeed = random(15, 20);
   
   float alpha = random(10, 40);
@@ -41,7 +41,7 @@ class Rain{
   //--------------------------------
   
   void CalcSpeed(){
-    xPos += xSpeed * windDirectionX * rainWeight;
+    xPos += xSpeed + windSpeedX / rainWeight;
     yPos += ySpeed;
   }
   

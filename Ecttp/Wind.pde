@@ -1,10 +1,10 @@
 class Wind{
   
-  float maxSpeed = 2;
+  float maxSpeed = 5;
   float windTimer;
   
   Wind(){
-    windDirectionX = 1;
+    windSpeedX = 1;
     ChangeWindDirection();
   }
   
@@ -18,18 +18,16 @@ class Wind{
   }
   
   void ChangeWindDirection(){
-    if ( windDirectionX >= maxSpeed){
-       windDirectionX -= windChangeAmount;
+    if (windSpeedX >= maxSpeed){
+       windSpeedX -= windChangeAmount;
     }
     
-    if (windDirectionX <= -maxSpeed){
-      windDirectionX += windChangeAmount;
+    if (windSpeedX <= -maxSpeed){
+      windSpeedX += windChangeAmount;
     }
     
-    if (windDirectionX <= maxSpeed && windDirectionX >= -maxSpeed){
-      windDirectionX = random(windDirectionX - windChangeAmount, windDirectionX + windChangeAmount);
+    if (windSpeedX <= maxSpeed && windSpeedX >= -maxSpeed){
+      windSpeedX = random(windSpeedX - windChangeAmount, windSpeedX + windChangeAmount);
     }
-    
-    println(windDirectionX);
   }
 }

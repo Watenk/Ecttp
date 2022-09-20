@@ -88,7 +88,7 @@ class CubePhysics{
       ySpeed = 0;
     }
     
-    xPos += xSpeed * windDirectionX * cubePhysicsWeight;
+    xPos += xSpeed + windSpeedX / cubePhysicsWeight;
     yPos += ySpeed;
   }
   
