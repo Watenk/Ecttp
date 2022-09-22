@@ -3,7 +3,7 @@ class Rain{
   boolean canBeDeleted;
   boolean animation;
   
-  float xPos = random(0 - displayWidth, displayWidth + displayWidth);
+  float xPos = random(0 - (displayWidth / 2), displayWidth + (displayWidth / 2));
   float yPos = random(-5000, -400);
   float rainWidth = 50;
   float rainHeight = 50;

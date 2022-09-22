@@ -1,4 +1,4 @@
-//Ecttp les 03
+//Ecttp les 04
 //Ivar Nuij
 
 //Idea List--------
@@ -6,6 +6,7 @@
 //Time (day / night)
 //Different sceen size compat
 //2-player
+//Custom cursor (cursor())
 
 //To Do
 //Collision with player
@@ -14,7 +15,7 @@
 //-----------------
 
 //GameSettings
-float FPS = 144; // lower than 60 causes slowdown
+float FPS = 300; // lower than 60 causes slowdown
 float updateSpeed = 60; //60 Times a second
 float physicsUpdateSpeed = 1; // Higher is slower
 
@@ -27,12 +28,12 @@ float drawDeltaTime;
 int frameCounter;
 FloatList frameMillisList;
 public float deltaTime;
-public float smoothFrameRate = 100;
+public float smoothFrameRate = FPS;
 
 //Wind
 Wind Wind;
 public float windChangeAmount = 1;
-public float windChangeTime = 30;
+public float windChangeTime = 10;
 public float rainWeight = 1;
 public float windSpeedX;
 
@@ -45,7 +46,7 @@ float rainRespawnTime;
 
 //CubesPhysics
 CubePhysicsManager CubePhysicsManager;
-public float cubePhysicsAmount = 100; // max 1000
+public float cubePhysicsAmount = 500; // max 1000
 public float cubePhysicsWeight = 10;
 public ArrayList<CubePhysics> cubePhysicsList;
 
@@ -102,7 +103,7 @@ void setup(){
 //Update
 void FixedUpdate(){
   
-  background(150);
+  background(175);
   
   GameManager.Update();
   Wind.Update();
@@ -212,5 +213,5 @@ void AddAnimation(PImage[] frames, String sprite, int frameAmount){
   for (int i=0; i < frameAmount; i += 1){
     String fileName = sprite + nf(i + 1, 4) + ".png";
     frames[i] = loadImage(fileName);
-  }
+  } 
 }
