@@ -1,8 +1,8 @@
 class Player1{
   
   float playerScale = 0.5;
-  float playerWidth = 250 * playerScale;
-  float playerHeight = 50 * playerScale;
+  float playerWidthAmount = 250;
+  float playerHeightAmount = 50;
   float decelerationAmount = 0.5;
   float movementSpeed = 5;
   
@@ -10,6 +10,9 @@ class Player1{
   boolean touchingWallRight;
   boolean touchingWallLeft;
   boolean touchingFloor;
+  
+  float playerWidth;
+  float playerHeight;
   
   float xSpeed;
   float ySpeed;
@@ -41,6 +44,7 @@ class Player1{
     
     WallCollision();
     
+    CalcScale();
     CalcSpeed();
     
     CalcPoints();
@@ -49,6 +53,14 @@ class Player1{
   }
   
   //---------------------------------
+  
+  void CalcScale(){
+    playerWidth = playerWidthAmount * (displayWidth / 1920);
+    playerHeight = playerHeightAmount * (displayHeight / 1080);
+    
+    playerWidth *= playerScale;
+    playerHeight *= playerScale;
+  }
   
   void CalcSpeed(){
     xPos += xSpeed;

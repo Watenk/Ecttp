@@ -3,10 +3,14 @@ class Rain{
   boolean canBeDeleted;
   boolean animation;
   
+  float rainScale = 1;
   float xPos = random(0 - (displayWidth / 2), displayWidth + (displayWidth / 2));
   float yPos = random(-5000, -400);
-  float rainWidth = 50;
-  float rainHeight = 50;
+  float rainWidthAmount = 50;
+  float rainHeightAmount = 50;
+  
+  float rainWidth;
+  float rainHeight;
   
   float xSpeed = random(-1, 1);
   float ySpeed = random(15, 20);
@@ -14,7 +18,7 @@ class Rain{
   float alpha = random(10, 40);
   
   Animation Animation;
-  float animationSize = random(25, 75);
+  float animationSize = random(25, 75) * (displayWidth / 1920);
   float animationXPos;
   
   //------------------------------
@@ -26,6 +30,7 @@ class Rain{
   void Update(){
     
     //Calc
+    CalcScale();
     CalcSpeed();
     Collision();
     
@@ -39,6 +44,14 @@ class Rain{
   }
   
   //--------------------------------
+  
+  void CalcScale(){
+    rainWidth = rainWidthAmount * (displayWidth / 1920);
+    rainHeight = rainHeightAmount * (displayHeight / 1080);
+    
+    rainWidth *= rainScale;
+    rainHeight *= rainScale;
+  }
   
   void CalcSpeed(){
     xPos += xSpeed + windSpeedX / rainWeight;

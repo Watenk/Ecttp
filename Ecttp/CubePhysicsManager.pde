@@ -24,31 +24,29 @@ class CubePhysicsManager{
           j += 1;
         }
         
-        //Pos 1
-        if (cube1.xPos > cube2.xPos && cube1.yPos > cube2.yPos){
-          if (cube1.xPos < cube2.xPos4 && cube1.yPos < cube2.yPos4){
-            
-          }
-        }
+        if (dist(cube1.xPos, cube1.yPos, cube2.xPos, cube2.yPos) < 50){
+          //Pos 1
+          //if (cube1.xPos > cube2.xPos && cube1.yPos > cube2.yPos){
+          //  if (cube1.xPos < cube2.xPos4 && cube1.yPos < cube2.yPos4){
+              
+          //  }
+          //}
       
-        //Pos 2
-        if (cube1.xPos2 > cube2.xPos && cube1.yPos2 > cube2.yPos){
-          if (cube1.xPos2 < cube2.xPos4 && cube1.yPos2 < cube2.yPos4){
+          ////Pos 2
+          //if (cube1.xPos2 > cube2.xPos && cube1.yPos2 > cube2.yPos){
+          //  if (cube1.xPos2 < cube2.xPos4 && cube1.yPos2 < cube2.yPos4){
             
-          }
-        }
-      
-        //Pos 3
-        if (cube1.xPos3 > cube2.xPos && cube1.yPos3 > cube2.yPos){
-          if (cube1.xPos3 < cube2.xPos4 && cube1.yPos3 < cube2.yPos4){
+          //  }
+          //}
+        
+          //Pos 3
+          if (cube1.xPos3 > cube2.xPos && cube1.yPos3 > cube2.yPos && cube1.xPos3 < cube2.xPos4 && cube1.yPos3 < cube2.yPos4){
             cube1.ySpeed = cube2.ySpeed * 0.9;
-            cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
+            cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;     
           }
-        }
-      
-        //Pos 4
-        if (cube1.xPos4 > cube2.xPos && cube1.yPos4 > cube2.yPos){
-          if (cube1.xPos4 < cube2.xPos4 && cube1.yPos4 < cube2.yPos4){
+        
+          //Pos 4
+          if (cube1.xPos4 > cube2.xPos && cube1.yPos4 > cube2.yPos && cube1.xPos4 < cube2.xPos4 && cube1.yPos4 < cube2.yPos4){
             cube1.ySpeed = cube2.ySpeed * 0.9;
             cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
           }
@@ -74,7 +72,7 @@ class CubePhysicsManager{
 
   void AddCubes() {
     for(int i=0; i <= cubePhysicsAmount; i += 1){
-      cubePhysicsList.add(new CubePhysics(random(0, displayWidth), random(-1000, 0)));
+      cubePhysicsList.add(new CubePhysics(random(0, displayWidth), random(0, 500)));
     }
   } 
 }

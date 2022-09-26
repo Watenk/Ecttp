@@ -1,9 +1,12 @@
 class Enemy{
   
   float enemyScale = 1;
-  float enemyWidth = 60;
-  float enemyHeight = 75;
+  float enemyWidthAmount = 60;
+  float enemyHeightAmount = 75;
   boolean becomeBigger;
+  
+  float enemyWidth;
+  float enemyHeight;
   
   float xSpeed = random(10, 15);
   float ySpeed = random(1, 3);
@@ -33,8 +36,7 @@ class Enemy{
   float xPosCube3; 
   float yPosCube3; 
   
-  Enemy() {
-  }
+  Enemy() {}
     
   void Update(){
   
@@ -73,8 +75,8 @@ class Enemy{
   }
   
   void CalcScale(){
-    enemyWidth = 60;
-    enemyHeight = 75;
+    enemyWidth = enemyWidthAmount * (displayWidth / 1920);
+    enemyHeight = enemyHeightAmount * (displayHeight / 1080);
     
     enemyWidth *= enemyScale;
     enemyHeight *= enemyScale;

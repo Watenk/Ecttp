@@ -1,5 +1,18 @@
 class UI{
   
+  //MainMenu
+  float playButtonWidthAmount = 300;
+  float playButtonHeightAmount = 100;
+  
+  float playButtonXPosAmount = 960 - playButtonWidthAmount / 2;
+  float playButtonYPosAmount = 540 - playButtonHeightAmount / 2;
+  
+  float playButtonXPos;
+  float playButtonYPos;
+  
+  float playButtonWidth;
+  float playButtonHeight;
+  
   UI() {
   }
   
@@ -20,5 +33,17 @@ class UI{
       fill(0, 100, 0);
       text(int(smoothFrameRate), 10, 20);
     }
+  }
+  
+  public void MainMenu(){
+    //Play Button
+    //Scale With Screen Size
+    playButtonWidth = playButtonWidthAmount * (displayWidth / 1920);
+    playButtonHeight = playButtonHeightAmount * (displayHeight / 1080);
+    playButtonXPos = playButtonXPosAmount * (displayWidth / 1920);
+    playButtonYPos = playButtonYPosAmount * (displayHeight / 1080);
+    
+    fill(200);
+    rect(playButtonXPos, playButtonYPos, playButtonWidth, playButtonHeight);
   }
 }

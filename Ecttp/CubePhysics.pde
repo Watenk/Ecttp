@@ -8,9 +8,12 @@ class CubePhysics{
   
   float xPos;
   float yPos;
-  float cubeWidth = 100;
-  float cubeHeight = 100;
+  float cubeWidthAmount = 100;
+  float cubeHeightAmount = 100;
   float cubeScale = 0.2;
+ 
+  float cubeWidth;
+  float cubeHeight;
  
   float xSpeed;
   float ySpeed;
@@ -45,26 +48,25 @@ class CubePhysics{
   
   //-------------------------------------
   
-
-  
   public void AddForce(){
     ySpeed = random(-5, -8);
   }
   
   void CalcScale(){
     //reset scale
-    cubeWidth = 100;
-    cubeHeight = 100;
+    cubeWidth = cubeWidthAmount * (displayWidth / 1920);
+    cubeHeight = cubeHeightAmount * (displayHeight / 1080);
     
     cubeWidth *= cubeScale;
     cubeHeight *= cubeScale;
   }
   
   void WallCollision(){
-    if (yPos3 >= displayHeight - 1|| yPos4 >= displayHeight - 1){
+    //Ground
+    if (yPos4 >= displayHeight - 1){
       
       isTouchingGround = true;
-      
+
       float newYSpeed;
       newYSpeed = ySpeed / impactDeceleration * random(0.9, 1.1);
         
@@ -74,6 +76,25 @@ class CubePhysics{
     }
     else{
       isTouchingGround = false;
+    }
+    
+    //Walls
+    if (xPos < 0){
+      float newXSpeed;
+      newXSpeed = xSpeed * -1 / impactDeceleration * random(0.9, 1.1);
+      
+      xPos = 0;
+      xSpeed = 0;
+      xSpeed += newXSpeed;
+    }
+    
+    if (xPos4 > displayWidth){
+      float newXSpeed;
+      newXSpeed = xSpeed / impactDeceleration * random(0.9, 1.1);
+      
+      xPos = displayWidth - cubeWidth;
+      xSpeed = 0;
+      xSpeed -= newXSpeed;
     }
   }
   
@@ -89,7 +110,7 @@ class CubePhysics{
     }
     
     xPos += xSpeed + windSpeedX / cubePhysicsWeight;
-    yPos += ySpeed;
+    yPos += ySpeed * cubePhysicsWeight / 10;
   }
   
   void CalcPoints() {
@@ -109,13 +130,7 @@ class CubePhysics{
   }
   
   void DrawCube(){
-    line(xPos, yPos, xPos2, yPos2);
-    line(xPos2, yPos2, xPos4, yPos4);
-    line(xPos4, yPos4, xPos3, yPos3);
-    line(xPos3, yPos3, xPos, yPos);
-    
-    fill(100, 100, 100, 255);
-    rect(xPos, yPos, cubeWidth, cubeHeight);
+    image(cubeImage, xPos, yPos, cubeWidth, cubeHeight);
   }
   
   void DrawDebugPoints(){

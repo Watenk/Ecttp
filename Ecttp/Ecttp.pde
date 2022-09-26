@@ -4,20 +4,33 @@
 //Idea List--------
 //Weather
 //Time (day / night)
-//Different sceen size compat
 //2-player
 //Custom cursor (cursor())
+//Main Menu - WIP
 
 //To Do
 //Collision with player
-//performance improvements (Rain, Collision, improve fixedUpdate())
+//Collision with wall - WIP
+//performance improvements (Rain, improve fixedUpdate())
 
 //-----------------
 
 //GameSettings
-float FPS = 300; // lower than 60 causes slowdown
+float FPS = 300; // lower than updateSpeed causes slowdown
 float updateSpeed = 60; //60 Times a second
-float physicsUpdateSpeed = 1; // Higher is slower
+
+float displayWidth = 1920;
+float displayHeight = 1080;
+
+//Setup
+Setup Setup;
+boolean setupIsDone;
+
+//Sound
+import processing.sound.*;
+
+public SoundFile backgroundMusic;
+public SoundFile hit;
 
 //Time
 float frameCounterSmoothAmount = 20; //Sum of amount of frames
@@ -53,11 +66,13 @@ public ArrayList<CubePhysics> cubePhysicsList;
 //Other
 UI UI;
 GameManager GameManager;
+ScreenBorders ScreenBorders;
 public Player1 Player1;
 Enemy enemy1;
 
 //Sprites
 public PImage rainDrop;
+public PImage cubeImage;
 
 //Animation
 public PImage[] rainSplash = new PImage[20];
@@ -72,32 +87,13 @@ public boolean a;
 //--------------------------
 
 void setup(){
+  //To Check the rest of Setup see Setup class
   
   frameRate(FPS);
   fullScreen(P2D);
   smooth(); // Anti-Ailiasing
-  
-  //Instance Classes
-  CubePhysicsManager = new CubePhysicsManager();
-  GameManager = new GameManager();
-  Wind = new Wind();
-  UI = new UI();
-  RainManager = new RainManager();
-  Player1 = new Player1();
-  enemy1 = new Enemy();
-  
-  //Instance Arrays
-  rainList = new ArrayList<Rain>();
-  cubePhysicsList = new ArrayList<CubePhysics>();
-  frameMillisList = new FloatList();
-  
-  //Sprites
-  rainDrop = loadImage("sprites/rainDrop.png");
-  
-  //Animations
-  AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
-  
-  CubePhysicsManager.AddCubes();
+  textSize(50);
+  text("Loading...", displayWidth / 2 - 200, displayHeight / 2);
 }
 
 //Update
@@ -105,7 +101,6 @@ void FixedUpdate(){
   
   background(175);
   
-  GameManager.Update();
   Wind.Update();
   
   noStroke();
@@ -115,21 +110,29 @@ void FixedUpdate(){
   CubePhysicsManager.Update();
   Player1.Update();
   enemy1.Update();
+  
+  ScreenBorders.Update();
 }
 
 
 void draw(){
+  
+  if (setupIsDone == false){
+    Setup = new Setup();
+    setupIsDone = true;
+  }
   
   CalcFrameRate();
   CalcDeltaTime();
   
   //FixedUpdate
   drawDeltaTime += deltaTime;
-  if (drawDeltaTime >= physicsUpdateSpeed){
+  if (drawDeltaTime >= 1){
     FixedUpdate();
     drawDeltaTime = 0;
   }
   
+  GameManager.Update();
   UI.update();
 }
 
@@ -182,6 +185,20 @@ void keyReleased(){
     
   if (key == ' '){
     spacebar = false; 
+  }
+}
+
+void mousePressed(){
+  if (GameManager.currentScene == "MainMenu"){
+    if (mouseButton == LEFT){
+      displayWidth = 1920;
+      displayHeight = 1080;
+    }
+  
+    if (mouseButton == RIGHT){
+      displayWidth = 2560;
+      displayHeight = 1440;
+    }
   }
 }
 
