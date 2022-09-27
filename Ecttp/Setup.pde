@@ -5,8 +5,6 @@ class Setup{
     
   //Instance Classes
   CubePhysicsManager = new CubePhysicsManager();
-  GameManager = new GameManager();
-  ScreenBorders = new ScreenBorders();
   Wind = new Wind();
   UI = new UI();
   RainManager = new RainManager();
@@ -30,9 +28,8 @@ class Setup{
   //Animations
   AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
   
-  CubePhysicsManager.AddCubes();
+  GameManager = new GameManager();
   
   textSize(12);
   }
-  
 }

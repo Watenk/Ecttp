@@ -3,6 +3,7 @@ class CubePhysics{
   float gravity = 25;
   float acceleration = random(0.18, 0.22); 
   float impactDeceleration = 2; 
+  float cubeWeight;
   
   boolean isTouchingGround = false;
   
@@ -29,9 +30,10 @@ class CubePhysics{
 
   //----------------------------------
   
-  CubePhysics(float _xPos, float _yPos){
+  CubePhysics(float _xPos, float _yPos, float _cubeWeight){
     xPos = _xPos;
     yPos = _yPos;
+    cubeWeight = _cubeWeight;
   }
 
   void update() {
@@ -54,11 +56,11 @@ class CubePhysics{
   
   void CalcScale(){
     //reset scale
-    cubeWidth = cubeWidthAmount * (displayWidth / 1920);
-    cubeHeight = cubeHeightAmount * (displayHeight / 1080);
+    cubeWidth = cubeWidthAmount;
+    cubeHeight = cubeHeightAmount;
     
-    cubeWidth *= cubeScale;
-    cubeHeight *= cubeScale;
+    cubeWidth *= cubeScale * displayWidth / 1920;
+    cubeHeight *= cubeScale * displayHeight / 1080;
   }
   
   void WallCollision(){
@@ -105,12 +107,8 @@ class CubePhysics{
   }
   
   void CalcSpeed(){
-    if (ySpeed <= 0.1 && ySpeed >= -0.1){
-      ySpeed = 0;
-    }
-    
-    xPos += xSpeed + windSpeedX / cubePhysicsWeight;
-    yPos += ySpeed * cubePhysicsWeight / 10;
+    xPos += xSpeed + windSpeedX / cubeWeight;
+    yPos += ySpeed * cubeWeight / 10;
   }
   
   void CalcPoints() {

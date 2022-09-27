@@ -19,12 +19,13 @@
 float FPS = 300; // lower than updateSpeed causes slowdown
 float updateSpeed = 60; //60 Times a second
 
-float displayWidth = 1920;
-float displayHeight = 1080;
-
 //Setup
 Setup Setup;
 boolean setupIsDone;
+
+//ScreenSize
+int currentDisplayWidth;
+int currentDisplayHeight;
 
 //Sound
 import processing.sound.*;
@@ -59,14 +60,11 @@ float rainRespawnTime;
 
 //CubesPhysics
 CubePhysicsManager CubePhysicsManager;
-public float cubePhysicsAmount = 500; // max 1000
-public float cubePhysicsWeight = 10;
 public ArrayList<CubePhysics> cubePhysicsList;
 
 //Other
 UI UI;
 GameManager GameManager;
-ScreenBorders ScreenBorders;
 public Player1 Player1;
 Enemy enemy1;
 
@@ -92,6 +90,7 @@ void setup(){
   frameRate(FPS);
   fullScreen(P2D);
   smooth(); // Anti-Ailiasing
+  
   textSize(50);
   text("Loading...", displayWidth / 2 - 200, displayHeight / 2);
 }
@@ -110,8 +109,6 @@ void FixedUpdate(){
   CubePhysicsManager.Update();
   Player1.Update();
   enemy1.Update();
-  
-  ScreenBorders.Update();
 }
 
 
@@ -191,13 +188,7 @@ void keyReleased(){
 void mousePressed(){
   if (GameManager.currentScene == "MainMenu"){
     if (mouseButton == LEFT){
-      displayWidth = 1920;
-      displayHeight = 1080;
-    }
-  
-    if (mouseButton == RIGHT){
-      displayWidth = 2560;
-      displayHeight = 1440;
+
     }
   }
 }

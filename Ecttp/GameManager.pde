@@ -4,6 +4,9 @@ class GameManager{
   
   GameManager(){
     currentScene = "MainMenu";
+    
+    //MainMenu
+    CubePhysicsManager.AddCubes(500, 10);
   }
   
   void Update(){
