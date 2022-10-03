@@ -6,7 +6,8 @@ class GameManager{
     currentScene = "MainMenu";
     
     //MainMenu
-    CubePhysicsManager.AddCubes(500, 10);
+    CubePhysicsManager.AddCubes(500, 500, 2, 10);
+    CubePhysicsManager.AddCubesRandom(0, displayWidth, -500, 0, 500, 10);
   }
   
   void Update(){
