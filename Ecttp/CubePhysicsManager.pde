@@ -1,7 +1,7 @@
 class CubePhysicsManager{
   
   float collisionSlowdown = 0.9; // Lower is faster slowdown
-  float cubeRepultion = 0;
+  float cubeRepultion;
   
   CubePhysicsManager(){
   }
@@ -21,32 +21,41 @@ class CubePhysicsManager{
       for (int j=0; j <= cubePhysicsList.size() - 1; j += 1){
         CubePhysics cube2 = cubePhysicsList.get(j);
         
-        if (dist(cube1.xPos, cube1.yPos, cube2.xPos, cube2.yPos) < (cube1.cubeHeight + cube1.cubeWidth) / 2 * 1.5 && cube1 != cube2){ //Check if cubes are close to each other
-        
-          //-----Need to rewrite, divide cube 2 in 4 cubes to determine cube1's new pos-----
-        
-          //Pos 3 - collision left bottom with top cube2
-          if (cube1.xPos3 >= cube2.xPos && cube1.yPos3 >= cube2.yPos && cube1.xPos3 <= cube2.xPos4 && cube1.yPos3 <= cube2.yPos4 - (cube2.cubeHeight * 0.25)){ 
-            cube1.ySpeed = cube2.ySpeed * collisionSlowdown;
-            cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
+        if (dist(cube1.xPos, cube1.yPos, cube2.xPos, cube2.yPos) < (cube1.cubeHeight + cube1.cubeWidth) / 2 * 1.25 && cube1 != cube2){ //Check if cubes are close to each other
+          //Pos 3
+          if (cube1.xPos3 >= cube2.xPos && cube1.yPos3 >= cube2.yPos && cube1.xPos3 <= cube2.xPos4 && cube1.yPos3 <= cube2.yPos4){ 
+            if (cube2.ySpeed < 0){  //cube2 go's up
+              cube1.ySpeed = cube2.ySpeed;
+              cube2.ySpeed *= collisionSlowdown;
+              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
+            }
+            else if (cube1.yPos3Previous <= cube2.yPos){ //cube1-Pos3 was above cube2
+              cube1.ySpeed *= collisionSlowdown;
+              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
+            }
+            else{ 
+              cube1.ySpeed *= collisionSlowdown;
+              cube1.xSpeed *= collisionSlowdown;
+              cube1.xPos = cube2.xPos + cube1.cubeWidth + cubeRepultion;
+            }
           }
-        
-          //Pos 4 - collision right bottom with top cube2
-          if (cube1.xPos4 >= cube2.xPos && cube1.yPos4 >= cube2.yPos && cube1.xPos4 <= cube2.xPos4 && cube1.yPos4 <= cube2.yPos4 - (cube2.cubeHeight * 0.25)){
-            cube1.ySpeed = cube2.ySpeed * collisionSlowdown;
-            cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-          }
-
-          //Pos 1 - collision left side
-          if (cube1.xPos >= cube2.xPos && cube1.yPos >= cube2.yPos && cube1.xPos <= cube2.xPos4 && cube1.yPos <= cube2.yPos4){ 
-            cube1.xSpeed = cube2.xSpeed * collisionSlowdown;
-            //cube1.xPos = cube2.xPos + cube1.cubeWidth + cubeRepultion;
-          }
-      
-          //Pos 2 - collision right side
-          if (cube1.xPos2 >= cube2.xPos && cube1.yPos2 >= cube2.yPos && cube1.xPos2 <= cube2.xPos4 && cube1.yPos2 <= cube2.yPos4){
-            cube1.xSpeed = cube2.xSpeed * collisionSlowdown;
-            //cube1.xPos = cube2.xPos - cube1.cubeWidth - cubeRepultion;
+          
+          //Pos 4
+          if (cube1.xPos4 >= cube2.xPos && cube1.yPos4 >= cube2.yPos && cube1.xPos4 <= cube2.xPos4 && cube1.yPos4 <= cube2.yPos4){ 
+            if (cube2.ySpeed < 0){  //cube2 go's up
+              cube1.ySpeed = cube2.ySpeed;
+              cube2.ySpeed *= collisionSlowdown;
+              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
+            }
+            else if (cube1.yPos4Previous <= cube2.yPos){ //cube1-Pos4 was above cube2
+              cube1.ySpeed *= collisionSlowdown;
+              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
+            }
+            else{ 
+              cube1.ySpeed *= collisionSlowdown;
+              cube1.xSpeed *= collisionSlowdown;
+              cube1.xPos = cube2.xPos - cube1.cubeWidth - cubeRepultion;
+            }
           }
         }
       }

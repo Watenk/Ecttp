@@ -7,8 +7,6 @@ class CubePhysics{
   
   boolean isTouchingGround = false;
   
-  float xPos;
-  float yPos;
   float cubeWidthAmount = 100;
   float cubeHeightAmount = 100;
   float cubeScale = 0.2;
@@ -19,14 +17,29 @@ class CubePhysics{
   float xSpeed;
   float ySpeed;
   
+  float xPos;
+  float yPos;
+  
+  float xPosPrevious; 
+  float yPosPrevious;
+  
   float xPos2; // Pos 2 is the right up point of rect
   float yPos2;
+  
+  float xPos2Previous;
+  float yPos2Previous;
   
   float xPos3; // pos 3 is the left bottom point of rect
   float yPos3;
   
+  float xPos3Previous;
+  float yPos3Previous;
+  
   float xPos4; // Pos 4 is the right bottom point of rect
   float yPos4; 
+  
+  float xPos4Previous;
+  float yPos4Previous;
 
   //----------------------------------
   
@@ -40,7 +53,9 @@ class CubePhysics{
     
     WallCollision();
     
-    CalcSpeed();
+    CalcPreviousPoints();
+    
+    CalcPos();
     CalcScale();
     
     CalcPoints();
@@ -106,7 +121,18 @@ class CubePhysics{
     }
   }
   
-  void CalcSpeed(){
+  void CalcPreviousPoints(){
+    xPosPrevious = xPos;
+    yPosPrevious = yPos;
+    xPos2Previous = xPos2;
+    yPos2Previous = yPos2;
+    xPos3Previous = xPos3;
+    yPos3Previous = yPos3;
+    xPos4Previous = xPos4;
+    yPos4Previous = yPos4;
+  }
+  
+  void CalcPos(){
     xPos += xSpeed + windSpeedX / cubeWeight;
     yPos += ySpeed * cubeWeight / 10;
   }
