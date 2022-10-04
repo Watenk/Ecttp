@@ -1,7 +1,7 @@
 class CubePhysicsManager{
   
-  float collisionSlowdown = 0.9; // Lower is faster slowdown
-  float cubeRepultion;
+  float collisionSlowdown = 0.9; 
+  float cubeRepultion = 0;
   
   CubePhysicsManager(){
   }
@@ -22,40 +22,10 @@ class CubePhysicsManager{
         CubePhysics cube2 = cubePhysicsList.get(j);
         
         if (dist(cube1.xPos, cube1.yPos, cube2.xPos, cube2.yPos) < (cube1.cubeHeight + cube1.cubeWidth) / 2 * 1.25 && cube1 != cube2){ //Check if cubes are close to each other
-          //Pos 3
-          if (cube1.xPos3 >= cube2.xPos && cube1.yPos3 >= cube2.yPos && cube1.xPos3 <= cube2.xPos4 && cube1.yPos3 <= cube2.yPos4){ 
-            if (cube2.ySpeed < 0){  //cube2 go's up
-              cube1.ySpeed = cube2.ySpeed;
-              cube2.ySpeed *= collisionSlowdown;
-              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            }
-            else if (cube1.yPos3Previous <= cube2.yPos){ //cube1-Pos3 was above cube2
-              cube1.ySpeed *= collisionSlowdown;
-              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            }
-            else{ 
-              cube1.ySpeed *= collisionSlowdown;
-              cube1.xSpeed *= collisionSlowdown;
-              cube1.xPos = cube2.xPos + cube1.cubeWidth + cubeRepultion;
-            }
-          }
           
           //Pos 4
           if (cube1.xPos4 >= cube2.xPos && cube1.yPos4 >= cube2.yPos && cube1.xPos4 <= cube2.xPos4 && cube1.yPos4 <= cube2.yPos4){ 
-            if (cube2.ySpeed < 0){  //cube2 go's up
-              cube1.ySpeed = cube2.ySpeed;
-              cube2.ySpeed *= collisionSlowdown;
-              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            }
-            else if (cube1.yPos4Previous <= cube2.yPos){ //cube1-Pos4 was above cube2
-              cube1.ySpeed *= collisionSlowdown;
-              cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            }
-            else{ 
-              cube1.ySpeed *= collisionSlowdown;
-              cube1.xSpeed *= collisionSlowdown;
-              cube1.xPos = cube2.xPos - cube1.cubeWidth - cubeRepultion;
-            }
+            
           }
         }
       }

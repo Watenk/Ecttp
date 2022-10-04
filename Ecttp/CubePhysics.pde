@@ -1,7 +1,7 @@
 class CubePhysics{
   
-  float gravity = 25;
-  float acceleration = random(0.18, 0.22); 
+  float maxSpeed = 20;
+  float acceleration = 0.2; 
   float impactDeceleration = 2; 
   float cubeWeight;
   
@@ -116,7 +116,7 @@ class CubePhysics{
   }
   
   void CalcGravity(){
-    if (ySpeed < gravity && isTouchingGround == false){
+    if (ySpeed < maxSpeed && isTouchingGround == false){
       ySpeed += acceleration;
     }
   }
