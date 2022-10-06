@@ -1,4 +1,4 @@
-//Ecttp les 04
+//Ecttp les 05
 //Ivar Nuij
 
 //Idea List--------
@@ -39,15 +39,15 @@ float frameMillis;
 float previousFrameMillis;
 float currentFrameRate;
 float drawDeltaTime;
-int frameCounter;
+public int frameCounter;
 FloatList frameMillisList;
 public float deltaTime;
 public float smoothFrameRate = FPS;
 
 //Wind
 Wind Wind;
-public float windChangeAmount = 1;
-public float windChangeTime = 10;
+public float windChangeAmount = 1; //Amount of pixels wind changes every windChangeTime
+public float windChangeTime = 2;   //Amount of frames wind changes
 public float rainWeight = 1;
 public float windSpeedX;
 

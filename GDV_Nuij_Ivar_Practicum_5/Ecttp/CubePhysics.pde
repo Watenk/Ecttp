@@ -1,7 +1,7 @@
 class CubePhysics{
   
   float maxSpeed = 20;
-  float acceleration = 0.2; 
+  float gravity = 0.2; 
   float impactDeceleration = 2; 
   float cubeWeight;
   
@@ -19,28 +19,15 @@ class CubePhysics{
   
   float xPos;
   float yPos;
-  
-  float xPosPrevious; 
-  float yPosPrevious;
-  
+
   float xPos2; // Pos 2 is the right up point of rect
   float yPos2;
-  
-  float xPos2Previous;
-  float yPos2Previous;
-  
+
   float xPos3; // pos 3 is the left bottom point of rect
   float yPos3;
-  
-  float xPos3Previous;
-  float yPos3Previous;
-  
+
   float xPos4; // Pos 4 is the right bottom point of rect
   float yPos4; 
-  
-  float xPos4Previous;
-  float yPos4Previous;
-
   //----------------------------------
   
   CubePhysics(float _xPos, float _yPos, float _cubeWeight){
@@ -50,11 +37,6 @@ class CubePhysics{
   }
 
   void update() {
-    
-    WallCollision();
-    
-    CalcPreviousPoints();
-    
     CalcPos();
     CalcScale();
     
@@ -78,7 +60,46 @@ class CubePhysics{
     cubeHeight *= cubeScale * displayHeight / 1080;
   }
   
-  void WallCollision(){
+  void CalcGravity(){
+    if (ySpeed < maxSpeed && !isTouchingGround){
+      ySpeed += gravity;
+    }
+  }
+  
+  void CalcPos(){
+    xPos += xSpeed + windSpeedX / cubeWeight;
+    yPos += ySpeed * cubeWeight / 10;
+  }
+  
+  void CalcPoints() {
+    //reset points each frame
+    xPos2 = xPos;
+    yPos2 = yPos;
+    xPos3 = xPos;
+    yPos3 = yPos;
+    xPos4 = xPos;
+    yPos4 = yPos;
+    
+    //points positions
+    xPos2 += cubeWidth;
+    yPos3 += cubeHeight;
+    xPos4 += cubeWidth;
+    yPos4 += cubeHeight;
+  }
+  
+  void DrawCube(){
+    image(cubeImage, xPos, yPos, cubeWidth, cubeHeight);
+  }
+  
+  void DrawDebugPoints(){
+    fill(100, 0, 0, 255);
+    rect(xPos, yPos, 2, 2);
+    rect(xPos2, yPos2, 2, 2);
+    rect(xPos3, yPos3, 2, 2);
+    rect(xPos4, yPos4, 2, 2);
+  }
+  
+  void Collision(){
     //Ground
     if (yPos4 >= displayHeight - 1){
       
@@ -113,55 +134,5 @@ class CubePhysics{
       xSpeed = 0;
       xSpeed -= newXSpeed;
     }
-  }
-  
-  void CalcGravity(){
-    if (ySpeed < maxSpeed && isTouchingGround == false){
-      ySpeed += acceleration;
-    }
-  }
-  
-  void CalcPreviousPoints(){
-    xPosPrevious = xPos;
-    yPosPrevious = yPos;
-    xPos2Previous = xPos2;
-    yPos2Previous = yPos2;
-    xPos3Previous = xPos3;
-    yPos3Previous = yPos3;
-    xPos4Previous = xPos4;
-    yPos4Previous = yPos4;
-  }
-  
-  void CalcPos(){
-    xPos += xSpeed + windSpeedX / cubeWeight;
-    yPos += ySpeed * cubeWeight / 10;
-  }
-  
-  void CalcPoints() {
-    //reset points each frame
-    xPos2 = xPos;
-    yPos2 = yPos;
-    xPos3 = xPos;
-    yPos3 = yPos;
-    xPos4 = xPos;
-    yPos4 = yPos;
-    
-    //points positions
-    xPos2 += cubeWidth;
-    yPos3 += cubeHeight;
-    xPos4 += cubeWidth;
-    yPos4 += cubeHeight;
-  }
-  
-  void DrawCube(){
-    image(cubeImage, xPos, yPos, cubeWidth, cubeHeight);
-  }
-  
-  void DrawDebugPoints(){
-    fill(100, 0, 0, 255);
-    rect(xPos, yPos, 2, 2);
-    rect(xPos2, yPos2, 2, 2);
-    rect(xPos3, yPos3, 2, 2);
-    rect(xPos4, yPos4, 2, 2);
   }
 }
