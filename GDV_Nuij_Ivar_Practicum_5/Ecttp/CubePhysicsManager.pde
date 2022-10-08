@@ -1,7 +1,7 @@
 class CubePhysicsManager {
 
   float collisionSlowdown = 0.5;  //When 2 cubes hit how much they slow down 
-  float collisionDetectRange = 200; //Cube detect range for other cubes (low values can cause collision inaccuracy)
+  float collisionDetectRange = 50; //Cube detect range for other cubes (low values can cause collision inaccuracy)
   float cubeRepultion = 0;
 
   CubePhysicsManager() {
@@ -23,42 +23,38 @@ class CubePhysicsManager {
         CubePhysics cube2 = cubePhysicsList.get(j);
 
         if (dist(cube1.xPos, cube1.yPos, cube2.xPos, cube2.yPos) < collisionDetectRange && cube1 != cube2) { //Check if cubes are close to each other
-
+          
           //Pos 3
           if (cube1.xPos3 >= cube2.xPos && cube1.yPos3 >= cube2.yPos && cube1.xPos3 <= cube2.xPos4 && cube1.yPos3 <= cube2.yPos4) { 
-
+            
             if (cube1.ySpeed > 0.1 && cube2.ySpeed > 0.1) {  //cube1 & 2 speed going down
               cube1.ySpeed *= collisionSlowdown;
-
               cube1.yPos = cube2.yPos - cube2.cubeHeight - cubeRepultion;
-            } else if (cube1.ySpeed < -0.1 && cube2.ySpeed < -0.1) {  //cube1 & 2 speed going up
+            }
+            else if (cube1.ySpeed < -0.1 && cube2.ySpeed < -0.1) {  //cube1 & 2 speed going up
               float averageSpeed = (cube1.ySpeed + cube2.ySpeed) / 2 * collisionSlowdown;
               cube1.ySpeed = averageSpeed;
               cube2.ySpeed = averageSpeed;
-
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            } else if (cube1.ySpeed > 0.1 && cube2.ySpeed < -0.1) {  //cube1 going down - cube2 going up
+            } 
+            else if (cube1.ySpeed > 0.1 && cube2.ySpeed < -0.1) {  //cube1 going down - cube2 going up
               cube1.ySpeed *= collisionSlowdown * -1;
-              cube2.ySpeed *= collisionSlowdown; 
-
+              cube2.ySpeed *= collisionSlowdown;
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            } else if (cube1.ySpeed < -0.1 && cube2.ySpeed > 0.1) {  //cube1 going up - cube2 going down
+            } 
+            else if (cube1.ySpeed < -0.1 && cube2.ySpeed > 0.1) {  //cube1 going up - cube2 going down
               float averageSpeed = (cube1.ySpeed + cube2.ySpeed) / 2 * collisionSlowdown;
               cube1.ySpeed = averageSpeed;
               cube2.ySpeed = averageSpeed;
-
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            } else {
+            } 
+            else {
               cube1.ySpeed *= collisionSlowdown;
-
-              if (cube1.ySpeed < 0.1) {
-                cube1.ySpeed = 0;
-              }
-
-              if (cube2.ySpeed < 0.1) {
-                cube2.ySpeed = 0;
-              }
-
+              cube2.ySpeed *= collisionSlowdown;
+              
+              //if (cube1.ySpeed < 0.1) cube1.ySpeed = 0;
+              //if (cube2.ySpeed < 0.1) cube2.ySpeed = 0;
+              
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
             }
           }
@@ -68,44 +64,41 @@ class CubePhysicsManager {
 
             if (cube1.ySpeed > 0.1 && cube2.ySpeed > 0.1) {  //cube1 & 2 speed going down
               cube1.ySpeed *= collisionSlowdown;
-
               cube1.yPos = cube2.yPos - cube2.cubeHeight - cubeRepultion;
-            } else if (cube1.ySpeed < -0.1 && cube2.ySpeed < -0.1) {  //cube1 & 2 speed going up
+            }
+            else if (cube1.ySpeed < -0.1 && cube2.ySpeed < -0.1) {  //cube1 & 2 speed going up
               float averageSpeed = (cube1.ySpeed + cube2.ySpeed) / 2 * collisionSlowdown;
               cube1.ySpeed = averageSpeed;
               cube2.ySpeed = averageSpeed;
-
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            } else if (cube1.ySpeed > 0.1 && cube2.ySpeed < -0.1) {  //cube1 going down - cube2 going up
+            } 
+            else if (cube1.ySpeed > 0.1 && cube2.ySpeed < -0.1) {  //cube1 going down - cube2 going up
               cube1.ySpeed *= collisionSlowdown * -1;
-              cube2.ySpeed *= collisionSlowdown; 
-
+              cube2.ySpeed *= collisionSlowdown;
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            } else if (cube1.ySpeed < -0.1 && cube2.ySpeed > 0.1) {  //cube1 going up - cube2 going down
+            } 
+            else if (cube1.ySpeed < -0.1 && cube2.ySpeed > 0.1) {  //cube1 going up - cube2 going down
               float averageSpeed = (cube1.ySpeed + cube2.ySpeed) / 2 * collisionSlowdown;
               cube1.ySpeed = averageSpeed;
               cube2.ySpeed = averageSpeed;
-
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
-            } else {
+            } 
+            else {
               cube1.ySpeed *= collisionSlowdown;
-
-              if (cube1.ySpeed < 0.1) {
-                cube1.ySpeed = 0;
-              }
-
-              if (cube2.ySpeed < 0.1) {
-                cube2.ySpeed = 0;
-              }
-
+              cube2.ySpeed *= collisionSlowdown;
+              
+              //if (cube1.ySpeed < 0.1) cube1.ySpeed = 0;
+              //if (cube2.ySpeed < 0.1) cube2.ySpeed = 0;
+              
               cube1.yPos = cube2.yPos - cube1.cubeHeight - cubeRepultion;
             }
           }
         }
       }
     }
-
-    //Update
+    
+    currentSoundPlays = 0;
+    
     for (int i=0; i <= cubePhysicsList.size() - 1; i += 1) {
       CubePhysics currentCube = cubePhysicsList.get(i);
 
@@ -130,7 +123,7 @@ class CubePhysicsManager {
 
   void AddCubesRandom(float _minXPos, float _maxXPos, float _minYPos, float _maxYPos, float _amount) {
     for (int i=1; i <= _amount; i += 1) {
-      cubePhysicsList.add(new CubePhysics(random(_minXPos, _maxXPos), random(_minYPos, _maxYPos), random(5, 20)));
+      cubePhysicsList.add(new CubePhysics(random(_minXPos, _maxXPos), random(_minYPos, _maxYPos), 10));
     }
   }
 }

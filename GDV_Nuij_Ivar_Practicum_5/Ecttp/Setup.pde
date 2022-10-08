@@ -18,12 +18,12 @@ class Setup{
   
   //Sound
   backgroundMusic = new SoundFile(Ecttp.this, "sound/backgroundMusic.mp3");
-  //backgroundMusic.play();
   hit = new SoundFile(Ecttp.this, "sound/hit.wav");
   
   //Sprites
   rainDrop = loadImage("sprites/rainDrop.png");
   cubeImage = loadImage("sprites/cubeImage.png");
+  play = loadImage("sprites/play.png");
   
   //Animations
   AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);

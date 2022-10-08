@@ -1,4 +1,4 @@
-//Ecttp les 05
+//Ecttp les 06
 //Ivar Nuij
 
 //Idea List--------
@@ -29,6 +29,9 @@ int currentDisplayHeight;
 
 //Sound
 import processing.sound.*;
+
+public float maxSoundPlays = 1; //max sounds each frame
+public float currentSoundPlays;
 
 public SoundFile backgroundMusic;
 public SoundFile hit;
@@ -71,6 +74,7 @@ Enemy enemy1;
 //Sprites
 public PImage rainDrop;
 public PImage cubeImage;
+public PImage play;
 
 //Animation
 public PImage[] rainSplash = new PImage[20];
@@ -92,7 +96,7 @@ void setup(){
   smooth(); // Anti-Ailiasing
   
   textSize(50);
-  text("Loading...", displayWidth / 2 - 200, displayHeight / 2);
+  text("Loading...", displayWidth / 2 - 125, displayHeight / 2);
 }
 
 //Update
@@ -107,8 +111,11 @@ void FixedUpdate(){
   stroke(1);
   
   CubePhysicsManager.Update();
+  
   Player1.Update();
   enemy1.Update();
+  
+  currentSoundPlays = 0;
 }
 
 

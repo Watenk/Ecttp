@@ -34,6 +34,7 @@ class CubePhysics{
     xPos = _xPos;
     yPos = _yPos;
     cubeWeight = _cubeWeight;
+    
   }
 
   void update() {
@@ -61,13 +62,13 @@ class CubePhysics{
   }
   
   void CalcGravity(){
-    if (ySpeed < maxSpeed && !isTouchingGround){
+    if (ySpeed < maxSpeed){ //&& !isTouchingGround){
       ySpeed += gravity;
     }
   }
   
   void CalcPos(){
-    xPos += xSpeed + windSpeedX / cubeWeight;
+    xPos += (xSpeed + windSpeedX) / cubeWeight;
     yPos += ySpeed * cubeWeight / 10;
   }
   
@@ -88,7 +89,10 @@ class CubePhysics{
   }
   
   void DrawCube(){
-    image(cubeImage, xPos, yPos, cubeWidth, cubeHeight);
+    float colorRHeight = map(yPos4, 0, displayHeight, 0, 255);
+    float colorGHeight = map(yPos4, 0, displayHeight, 255, 0);
+    fill(colorRHeight, colorGHeight, 0);
+    rect(xPos, yPos, cubeWidth, cubeHeight);
   }
   
   void DrawDebugPoints(){
@@ -111,6 +115,8 @@ class CubePhysics{
       yPos = displayHeight - cubeHeight;
       ySpeed = 0;
       ySpeed -= newYSpeed;
+      
+      if (ySpeed < -1.5 && currentSoundPlays < maxSoundPlays){ hit.play(); currentSoundPlays += 1;}
     }
     else{
       isTouchingGround = false;

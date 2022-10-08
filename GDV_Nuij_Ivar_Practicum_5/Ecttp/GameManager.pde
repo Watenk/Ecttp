@@ -6,14 +6,16 @@ class GameManager{
     currentScene = "MainMenu";
     
     //MainMenu
-
+    
+    //backgroundMusic.play();
+    
     CubePhysicsManager.AddCubes(481, 930, 1, 10);
     CubePhysicsManager.AddCubes(500, 950, 1, 10);
 
     //CubePhysicsManager.AddCubes(690, 100, 1, 11);
     //CubePhysicsManager.AddCubes(700, 150, 1, 10);
     
-    CubePhysicsManager.AddCubesRandom(0, displayWidth, -500, 0, 500);
+    CubePhysicsManager.AddCubesRandom(100, displayWidth - 100, 0, 500, 2000);
   }
   
   void Update(){
@@ -21,7 +23,6 @@ class GameManager{
     switch(currentScene) {
       case "MainMenu":
         MainMenu();
-        UI.MainMenu();
         break;
         
       case "Lvl01":
@@ -34,6 +35,6 @@ class GameManager{
   }
   
   void MainMenu(){
-
+    UI.MainMenu();
   }
 }
