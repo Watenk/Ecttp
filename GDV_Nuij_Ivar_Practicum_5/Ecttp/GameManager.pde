@@ -3,30 +3,19 @@ class GameManager{
   public String currentScene;
   
   GameManager(){
-    currentScene = "MainMenu";
-    
-    //MainMenu
-    
-    //backgroundMusic.play();
-    
-    CubePhysicsManager.AddCubes(481, 930, 1, 10);
-    CubePhysicsManager.AddCubes(500, 950, 1, 10);
-
-    //CubePhysicsManager.AddCubes(690, 100, 1, 11);
-    //CubePhysicsManager.AddCubes(700, 150, 1, 10);
-    
-    CubePhysicsManager.AddCubesRandom(100, displayWidth - 100, 0, 500, 2000);
+    currentScene = "TitleScreen";
+    SetupTitleScreen();
   }
   
   void Update(){
     
     switch(currentScene) {
-      case "MainMenu":
-        MainMenu();
+      case "TitleScreen":
+        TitleScreen();
         break;
         
       case "Lvl01":
-      
+        Lvl01();
         break;
         
       default:
@@ -34,7 +23,23 @@ class GameManager{
     }
   }
   
-  void MainMenu(){
-    UI.MainMenu();
+  void SetupTitleScreen(){
+    backgroundMusic.play();
+    
+    CubePhysicsManager.AddCubesRandom(100, displayWidth - 100, -20000, -10000, 1000);
+    rainAmount = 10;
+  }
+  
+  void TitleScreen(){
+    UI.TitleScreen();
+  }
+  
+  void SetupLvl01(){
+    Player1 = new Player1();
+    println("Player");
+  }
+  
+  void Lvl01(){
+    Player1.Update();
   }
 }

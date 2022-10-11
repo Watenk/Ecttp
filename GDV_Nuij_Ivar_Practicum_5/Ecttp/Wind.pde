@@ -3,10 +3,7 @@ class Wind{
   float maxSpeed = 5;
   float windTimer;
   
-  Wind(){
-    windSpeedX = 1;
-    ChangeWindDirection();
-  }
+  Wind(){}
   
   void Update(){
     windTimer += 1;

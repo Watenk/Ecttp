@@ -8,7 +8,6 @@ class Setup{
   Wind = new Wind();
   UI = new UI();
   RainManager = new RainManager();
-  Player1 = new Player1();
   enemy1 = new Enemy();
   
   //Instance Arrays
@@ -24,6 +23,7 @@ class Setup{
   rainDrop = loadImage("sprites/rainDrop.png");
   cubeImage = loadImage("sprites/cubeImage.png");
   play = loadImage("sprites/play.png");
+  title = loadImage("sprites/title.png");
   
   //Animations
   AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);

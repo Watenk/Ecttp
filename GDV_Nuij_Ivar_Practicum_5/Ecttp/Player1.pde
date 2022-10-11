@@ -17,8 +17,8 @@ class Player1{
   float xSpeed;
   float ySpeed;
   
-  float xPos = displayWidth / 2;
-  float yPos = displayHeight - playerHeight;
+  float xPos = 100;//displayWidth / 4 - playerWidth / 2;
+  float yPos = 100;//displayHeight - playerHeight * 2;
   
   float xPos2; // Pos 2 is the right up point of rect
   float yPos2;

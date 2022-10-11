@@ -1,11 +1,18 @@
 class UI{
   
-  //MainMenu
-  float playButtonWidthAmount = 300;
-  float playButtonHeightAmount = 100;
+  //TitleScreen
+  //Title
+  float titleWidth = 1280;
+  float titleHeight = 720;
+  float titleXPos = displayWidth / 2 - titleWidth / 2;
+  float titleYPos = displayHeight / 4 - titleHeight / 2;
   
-  float playButtonXPosAmount = displayWidth / 2 - playButtonWidthAmount / 2;
-  float playButtonYPosAmount = displayHeight / 1.5 - playButtonHeightAmount / 2;
+  //PlayButton
+  float playButtonWidth = 300;
+  float playButtonHeight = 100;
+  float playButtonXPos = displayWidth / 2 - playButtonWidth / 2;
+  float playButtonYPos = displayHeight / 1.5 - playButtonHeight / 2;
+
   
   UI() {
   }
@@ -29,16 +36,29 @@ class UI{
     }
   }
   
-  public void MainMenu(){
-    //Play Button
+  public void TitleScreen(){
+    //Title
+    float titleWidthScale = titleWidth * (displayWidth / 1920);
+    float titleHeightScale = titleHeight * (displayWidth / 1920);
+    float titleXPosScale = titleXPos * (displayWidth / 1920);
+    float titleYPosScale = titleYPos * (displayWidth / 1920);
     
-    float playButtonWidth = playButtonWidthAmount * (displayWidth / 1920);
-    float playButtonHeight = playButtonHeightAmount * (displayHeight / 1080);
-    float playButtonXPos = playButtonXPosAmount * (displayWidth / 1920);
-    float playButtonYPos = playButtonYPosAmount * (displayHeight / 1080);
+    image(title, titleXPosScale, titleYPosScale, titleWidthScale, titleHeightScale);
+    
+    //Play Button    
+    float playButtonWidthScale = playButtonWidth * (displayWidth / 1920);
+    float playButtonHeightScale = playButtonHeight * (displayHeight / 1080);
+    float playButtonXPosScale = playButtonXPos * (displayWidth / 1920);
+    float playButtonYPosScale = playButtonYPos * (displayHeight / 1080);
     
     fill(color(#F01E2F));
-    rect(playButtonXPos, playButtonYPos, playButtonWidth, playButtonHeight);
-    image(play, playButtonXPos, playButtonYPos, playButtonWidth, playButtonHeight);
+    rect(playButtonXPosScale, playButtonYPosScale, playButtonWidthScale, playButtonHeightScale);
+    image(play, playButtonXPosScale, playButtonYPosScale, playButtonWidthScale, playButtonHeightScale);
+    
+    if (mouseX >= playButtonXPosScale && mouseY >= playButtonYPosScale && mouseX <= playButtonXPosScale + playButtonWidthScale && mouseY <= playButtonYPosScale + playButtonHeightScale && mousePressed == true){ //If mouse is in play button and mouseclick, load scene
+      GameManager.currentScene = "lvl01";
+      cubePhysicsList.clear();
+      GameManager.SetupLvl01();
+    }
   }
 }

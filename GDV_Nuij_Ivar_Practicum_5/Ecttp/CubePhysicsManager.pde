@@ -126,4 +126,8 @@ class CubePhysicsManager {
       cubePhysicsList.add(new CubePhysics(random(_minXPos, _maxXPos), random(_minYPos, _maxYPos), 10));
     }
   }
+  
+  void Clear(){
+    cubePhysicsList.clear();
+  }
 }

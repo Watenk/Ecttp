@@ -49,14 +49,14 @@ public float smoothFrameRate = FPS;
 
 //Wind
 Wind Wind;
-public float windChangeAmount = 1; //Amount of pixels wind changes every windChangeTime
-public float windChangeTime = 2;   //Amount of frames wind changes
+public float windChangeAmount = 0; //Amount of pixels wind changes every windChangeTime
+public float windChangeTime = 5;   //Amount of frames wind changes
 public float rainWeight = 1;
 public float windSpeedX;
 
 //Rain
 RainManager RainManager;
-public float rainAmount = 500;
+public float rainAmount = 0;
 public float rainRespawnTimeAmount = 120;
 ArrayList<Rain> rainList;
 float rainRespawnTime;
@@ -68,13 +68,14 @@ public ArrayList<CubePhysics> cubePhysicsList;
 //Other
 UI UI;
 GameManager GameManager;
-public Player1 Player1;
 Enemy enemy1;
+public Player1 Player1;
 
 //Sprites
 public PImage rainDrop;
 public PImage cubeImage;
 public PImage play;
+public PImage title;
 
 //Animation
 public PImage[] rainSplash = new PImage[20];
@@ -112,7 +113,6 @@ void FixedUpdate(){
   
   CubePhysicsManager.Update();
   
-  Player1.Update();
   enemy1.Update();
   
   currentSoundPlays = 0;
