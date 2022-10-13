@@ -4,20 +4,21 @@ class Setup{
   Setup(){
     
   //Instance Classes
-  CubePhysicsManager = new CubePhysicsManager();
+  Time = new Time();
+  CubeManager = new CubeManager();
   Wind = new Wind();
   UI = new UI();
   RainManager = new RainManager();
   enemy1 = new Enemy();
   
   //Instance Arrays
-  rainList = new ArrayList<Rain>();
-  cubePhysicsList = new ArrayList<CubePhysics>();
-  frameMillisList = new FloatList();
+  RainManager.rainList = new ArrayList<Rain>();
+  CubeManager.cubeList = new ArrayList<Cube>();
+  Time.frameMillisList = new FloatList();
   
   //Sound
-  backgroundMusic = new SoundFile(Ecttp.this, "sound/backgroundMusic.mp3");
-  hit = new SoundFile(Ecttp.this, "sound/hit.wav");
+  backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.mp3");
+  hit = new SoundFile(Main.this, "sound/hit.wav");
   
   //Sprites
   rainDrop = loadImage("sprites/rainDrop.png");
@@ -26,7 +27,8 @@ class Setup{
   title = loadImage("sprites/title.png");
   
   //Animations
-  AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
+  Animation = new Animation();
+  Animation.AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
   
   GameManager = new GameManager();
   

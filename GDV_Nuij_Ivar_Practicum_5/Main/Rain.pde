@@ -54,7 +54,7 @@ class Rain{
   }
   
   void CalcSpeed(){
-    xPos += xSpeed + windSpeedX / rainWeight;
+    xPos += xSpeed + Wind.windSpeedX / RainManager.rainWeight;
     yPos += ySpeed;
   }
   

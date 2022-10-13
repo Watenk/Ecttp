@@ -26,8 +26,8 @@ class GameManager{
   void SetupTitleScreen(){
     backgroundMusic.play();
     
-    CubePhysicsManager.AddCubesRandom(100, displayWidth - 100, -20000, -10000, 1000);
-    rainAmount = 10;
+    CubeManager.AddCubesRandom(100, displayWidth - 100, -25000, -3000, 1000);
+    RainManager.rainAmount = 10;
   }
   
   void TitleScreen(){

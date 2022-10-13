@@ -16,4 +16,11 @@ class Animation{
     currentFrame += 1;  
     }
   }
+  
+  void AddAnimation(PImage[] frames, String sprite, int frameAmount){
+    for (int i=0; i < frameAmount; i += 1){
+      String fileName = sprite + nf(i + 1, 4) + ".png";
+      frames[i] = loadImage(fileName);
+    } 
+  }
 }

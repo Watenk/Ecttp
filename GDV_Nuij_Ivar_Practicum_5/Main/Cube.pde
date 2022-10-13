@@ -1,4 +1,4 @@
-class CubePhysics{
+class Cube{
   
   float maxSpeed = 20;
   float gravity = 0.2; 
@@ -30,7 +30,7 @@ class CubePhysics{
   float yPos4; 
   //----------------------------------
   
-  CubePhysics(float _xPos, float _yPos, float _cubeWeight){
+  Cube(float _xPos, float _yPos, float _cubeWeight){
     xPos = _xPos;
     yPos = _yPos;
     cubeWeight = _cubeWeight;
@@ -68,7 +68,7 @@ class CubePhysics{
   }
   
   void CalcPos(){
-    xPos += (xSpeed + windSpeedX) / cubeWeight;
+    xPos += (xSpeed + Wind.windSpeedX) / cubeWeight;
     yPos += ySpeed * cubeWeight / 10;
   }
   

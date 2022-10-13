@@ -19,20 +19,20 @@ class UI{
   
   void update(){
     //Performance
-    if (smoothFrameRate < 30){
+    if (Time.smoothFrameRate < 30){
       fill(255, 0, 0);
-      text(int(smoothFrameRate), 10, 20);
+      text(int(Time.smoothFrameRate), 10, 20);
       text("Game Slowed", 40, 20);
       text("Considerably", 122, 20);
     }
-    if (smoothFrameRate <= 60 && smoothFrameRate >= 30){
+    if (Time.smoothFrameRate <= 60 && Time.smoothFrameRate >= 30){
       fill(215, 115, 0);
-      text(int(smoothFrameRate), 10, 20);
+      text(int(Time.smoothFrameRate), 10, 20);
       text("Game Slowed", 40, 20);
     }
-    if (smoothFrameRate >= 60){
+    if (Time.smoothFrameRate >= 60){
       fill(0, 100, 0);
-      text(int(smoothFrameRate), 10, 20);
+      text(int(Time.smoothFrameRate), 10, 20);
     }
   }
   
@@ -57,7 +57,7 @@ class UI{
     
     if (mouseX >= playButtonXPosScale && mouseY >= playButtonYPosScale && mouseX <= playButtonXPosScale + playButtonWidthScale && mouseY <= playButtonYPosScale + playButtonHeightScale && mousePressed == true){ //If mouse is in play button and mouseclick, load scene
       GameManager.currentScene = "lvl01";
-      cubePhysicsList.clear();
+      CubeManager.cubeList.clear();
       GameManager.SetupLvl01();
     }
   }
