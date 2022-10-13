@@ -8,7 +8,7 @@ class Time {
   public int frameCounter;
   FloatList frameMillisList;
   public float deltaTime;
-  public float smoothFrameRate = FPS;
+  public float smoothFrameRate = 1;
 
   void CalcFrameRate() {
     //currentFrameRate

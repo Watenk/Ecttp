@@ -56,9 +56,8 @@ class UI{
     image(play, playButtonXPosScale, playButtonYPosScale, playButtonWidthScale, playButtonHeightScale);
     
     if (mouseX >= playButtonXPosScale && mouseY >= playButtonYPosScale && mouseX <= playButtonXPosScale + playButtonWidthScale && mouseY <= playButtonYPosScale + playButtonHeightScale && mousePressed == true){ //If mouse is in play button and mouseclick, load scene
-      GameManager.currentScene = "lvl01";
+      GameManager.currentScene = "Lvl01";
       CubeManager.cubeList.clear();
-      GameManager.SetupLvl01();
     }
   }
 }

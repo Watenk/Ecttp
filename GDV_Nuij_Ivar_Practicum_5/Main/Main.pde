@@ -8,9 +8,10 @@
 //Custom cursor (cursor())
 
 //To Do
+//Fix Scaling Pos issues
 //Collision with player - WIP
 //CubeCollision with wall - ??
-//performance improvements (Rain, improve fixedUpdate())
+//performance improvements (Rain, improve fixedUpdate(), loadtimes!)
 
 //-------------------------------------------------
 
@@ -24,8 +25,7 @@ public PImage cubeImage;
 public PImage play;
 public PImage title;
 
-//Animation
-public PImage[] rainSplash = new PImage[20];
+PImage[] rainSplash = new PImage[20];
 
 //Sound
 import processing.sound.*;
@@ -37,17 +37,22 @@ public SoundFile backgroundMusic;
 public SoundFile hit;
 
 //Other
-Wind Wind;
-RainManager RainManager;
-CubeManager CubeManager;
 Time Time;
-Animation Animation;
-Collision Collision;
 UI UI;
 GameManager GameManager;
 
-Enemy enemy1;
-public Player1 Player1;
+Shape Shape;
+Cube Cube;
+CubeManager CubeManager;
+Collision Collision;
+Enemy Enemy;
+EnemyManager EnemyManager;
+Player1 Player1;
+
+Wind Wind;
+RainManager RainManager;
+
+Animation Animation;
 
 //Setup
 Setup Setup;
@@ -74,7 +79,7 @@ void setup() {
   smooth(); // Anti-Ailiasing
 
   textSize(50);
-  text("Loading...", displayWidth / 2 - 125, displayHeight / 2);
+  text("Loading... - can take up to a minute :/", displayWidth / 4, displayHeight / 2);
 }
 
 void FixedUpdate() {
@@ -83,9 +88,9 @@ void FixedUpdate() {
   
   Wind.Update();
   Collision.Update();
-  CubeManager.Update();
-  enemy1.Update();
   noStroke(); RainManager.Update(); stroke(1);
+  CubeManager.Update();
+  EnemyManager.Update();
 
   currentSoundPlays = 0;
 }
@@ -108,14 +113,14 @@ void draw() {
     FixedUpdate();
     Time.updateFixedUpdate = 0;
   }
-
+  
   GameManager.Update();
   UI.update();
 }
 
 //-----------------------------------------------
 
-//Inputs - Works only in a class with draw()
+//Inputs - Only works in a class with draw()
 void keyPressed() {
   if (key == 'a') {
     a = true;

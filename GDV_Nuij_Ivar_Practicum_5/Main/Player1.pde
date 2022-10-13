@@ -1,8 +1,5 @@
-class Player1{
+class Player1 extends Shape{
   
-  float playerScale = 0.5;
-  float playerWidthAmount = 250;
-  float playerHeightAmount = 50;
   float decelerationAmount = 0.5;
   float movementSpeed = 5;
   
@@ -11,61 +8,26 @@ class Player1{
   boolean touchingWallLeft;
   boolean touchingFloor;
   
-  float playerWidth;
-  float playerHeight;
-  
-  float xSpeed;
-  float ySpeed;
-  
-  float xPos = 100;//displayWidth / 4 - playerWidth / 2;
-  float yPos = 100;//displayHeight - playerHeight * 2;
-  
-  float xPos2; // Pos 2 is the right up point of rect
-  float yPos2;
-  
-  float xPos3; // pos 3 is the left bottom point of rect
-  float yPos3;
-  
-  float xPos4; // Pos 4 is the right bottom point of rect
-  float yPos4; 
-  
-  float xPos5; // Pos 5 is the middle of the rect
-  float yPos5;
-  
   //-----------------------------------
   
-  Player1() {
-    CalcPoints();
+  Player1(float _xPos, float _yPos, float _width, float _height, float _scale) {
+    super(_xPos, _yPos, _width, _height, _scale, 1);
+    super.Update();
   }
     
   void Update(){
    
+    CalcSpeed();
+    WallCollision();
     Inputs();
     
-    WallCollision();
-    
-    CalcScale();
-    CalcSpeed();
-    
-    CalcPoints();
-    DrawPlayer();
-    //DrawDebugPoints();
+    fill(0, 150, 0);
+    super.Update();
   }
   
   //---------------------------------
   
-  void CalcScale(){
-    playerWidth = playerWidthAmount * (displayWidth / 1920);
-    playerHeight = playerHeightAmount * (displayHeight / 1080);
-    
-    playerWidth *= playerScale;
-    playerHeight *= playerScale;
-  }
-  
   void CalcSpeed(){
-    xPos += xSpeed;
-    yPos += ySpeed;
-    
     if (xSpeed >= 0.1){
       xSpeed -= decelerationAmount;
     }
@@ -107,7 +69,7 @@ class Player1{
     if (yPos3 >= displayHeight - 1 || yPos4 >= displayHeight - 1){
       if (touchingFloor == false){
         ySpeed = 0;
-        yPos = displayHeight - 1 - playerHeight;
+        yPos = displayHeight - 1 - Height;
       }
       touchingFloor = true;
     }
@@ -129,7 +91,7 @@ class Player1{
     if (xPos2 >= displayWidth - 1){
       if (touchingWallRight == false){
         xSpeed = 0;
-        xPos = displayWidth - 1 - playerWidth;
+        xPos = displayWidth - 1 - Width;
       }
       touchingWallRight = true;
     }
@@ -138,76 +100,21 @@ class Player1{
     }
   }
   
-  void DrawPlayer(){
-    line(xPos, yPos, xPos2, yPos2);
-    line(xPos2, yPos2, xPos4, yPos4);
-    line(xPos4, yPos4, xPos3, yPos3);
-    line(xPos3, yPos3, xPos, yPos);
-    
-    fill(0, 100, 0, 255);
-    rect(xPos, yPos, playerWidth, playerHeight);
-  }
-  
   void Inputs(){
     if (w == true && !touchingRoof){
-      GoUp();
+      ySpeed = -movementSpeed;
     }
     
     if (d == true && !touchingWallRight){
-      GoRight();
+      xSpeed = movementSpeed;
     }
     
     if (s == true && !touchingFloor){
-      GoDown();
+      ySpeed = movementSpeed;
     }
     
     if (a == true && !touchingWallLeft){
-      GoLeft();
+      xSpeed = -movementSpeed;
     }
-  }
-  
-  void GoRight(){
-    xSpeed = movementSpeed;
-  }
-  
-  void GoLeft(){
-    xSpeed = -movementSpeed;
-  }
-  
-  void GoUp(){
-    ySpeed = -movementSpeed;
-  }
-  
-  void GoDown(){
-    ySpeed = movementSpeed;
-  }
-  
-  void CalcPoints() {
-    //reset points each frame
-    xPos2 = xPos;
-    yPos2 = yPos;
-    xPos3 = xPos;
-    yPos3 = yPos;
-    xPos4 = xPos;
-    yPos4 = yPos;
-    xPos5 = xPos;
-    yPos5 = yPos;
-    
-    //points positions
-    xPos2 += playerWidth;
-    yPos3 += playerHeight;
-    xPos4 += playerWidth;
-    yPos4 += playerHeight;
-    xPos5 += playerWidth / 2;
-    yPos5 += playerHeight / 2;
-  }
-  
-  void DrawDebugPoints(){
-    fill(100, 0, 0, 255);
-    rect(xPos, yPos, 2, 2);
-    rect(xPos2, yPos2, 2, 2);
-    rect(xPos3, yPos3, 2, 2);
-    rect(xPos4, yPos4, 2, 2);
-    rect(xPos5, yPos5, 2, 2);
   }
 }

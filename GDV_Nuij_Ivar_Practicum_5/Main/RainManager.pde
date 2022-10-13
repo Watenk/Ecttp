@@ -5,19 +5,11 @@ class RainManager {
   public float rainWeight = 1;
   ArrayList<Rain> rainList;
   float rainRespawnTime;
-  Animation Animation1;
   int timer;
 
-  RainManager() {
-
-    Animation1 = new Animation();
-  }
+  RainManager() {}
 
   void Update() {
-
-    if (Animation1.isDone == false) {
-      Animation1.Play(rainSplash, 20, 0, 0, 1, 1);
-    }
 
     for (int i=0; i <= rainList.size() - 1; i += 1) {
       Rain currentRainDrop = rainList.get(i);

@@ -1,24 +1,37 @@
 class Setup{
   //To get around the max 5000ms loadtime in processing
-
+  
   Setup(){
+  
+  println("Setup");
     
   //Instance Classes
   Time = new Time();
-  CubeManager = new CubeManager();
-  Wind = new Wind();
   UI = new UI();
+  Collision = new Collision();
+  
+  CubeManager = new CubeManager();
+  EnemyManager = new EnemyManager();
   RainManager = new RainManager();
-  enemy1 = new Enemy();
+  
+  Wind = new Wind();
+  
+  println("Arrays");
   
   //Instance Arrays
-  RainManager.rainList = new ArrayList<Rain>();
-  CubeManager.cubeList = new ArrayList<Cube>();
   Time.frameMillisList = new FloatList();
+  
+  CubeManager.cubeList = new ArrayList<Cube>();
+  EnemyManager.enemyList = new ArrayList<Enemy>();
+  RainManager.rainList = new ArrayList<Rain>();
+  
+  println("Sound");
   
   //Sound
   backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.mp3");
   hit = new SoundFile(Main.this, "sound/hit.wav");
+  
+  println("Sprites");
   
   //Sprites
   rainDrop = loadImage("sprites/rainDrop.png");
@@ -26,9 +39,15 @@ class Setup{
   play = loadImage("sprites/play.png");
   title = loadImage("sprites/title.png");
   
+  println("Animations");
+  
   //Animations
   Animation = new Animation();
+  
   Animation.AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
+  Animation.PreloadAnimation(rainSplash, 20);
+  
+  println("GameManager");
   
   GameManager = new GameManager();
   

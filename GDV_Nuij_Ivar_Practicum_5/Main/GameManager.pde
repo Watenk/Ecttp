@@ -2,9 +2,11 @@ class GameManager{
   
   public String currentScene;
   
+  boolean titleScreenSetup;
+  boolean lvl01Setup;
+  
   GameManager(){
     currentScene = "TitleScreen";
-    SetupTitleScreen();
   }
   
   void Update(){
@@ -23,23 +25,30 @@ class GameManager{
     }
   }
   
+  //------------------------------
+  
   void SetupTitleScreen(){
     backgroundMusic.play();
     
-    CubeManager.AddCubesRandom(100, displayWidth - 100, -25000, -3000, 1000);
+    CubeManager.AddCubesRandom(100, (displayWidth - 100), -30000, -100, 100, 100, 0.2, 10, 1000);
     RainManager.rainAmount = 10;
   }
   
   void TitleScreen(){
+    if (!titleScreenSetup) {SetupTitleScreen(); titleScreenSetup = true;}
+    
     UI.TitleScreen();
   }
+  //-----------------------------
   
   void SetupLvl01(){
-    Player1 = new Player1();
-    println("Player");
+    EnemyManager.AddEnemy(100, 100, 100, 100, 2, 2, 1, 10, 2);
+    Player1 = new Player1(displayWidth / 2 - (250 / 2), displayHeight + 50, 250, 50, 1);
   }
   
   void Lvl01(){
+    if (!lvl01Setup) {SetupLvl01(); lvl01Setup = true;}
+    
     Player1.Update();
   }
 }
