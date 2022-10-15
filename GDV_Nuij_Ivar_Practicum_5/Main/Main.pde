@@ -11,7 +11,7 @@
 //Fix Scaling Pos issues
 //Collision with player - WIP
 //CubeCollision with wall - ??
-//performance improvements (Rain, improve fixedUpdate(), loadtimes!)
+//performance improvements (Rain, improve fixedUpdate(), loadtimes!, color functions (red(), etc), PImage.get())
 
 //-------------------------------------------------
 
@@ -24,6 +24,7 @@ public PImage rainDrop;
 public PImage cubeImage;
 public PImage play;
 public PImage title;
+public PImage monaLisa;
 
 PImage[] rainSplash = new PImage[20];
 
@@ -53,6 +54,7 @@ Wind Wind;
 RainManager RainManager;
 
 Animation Animation;
+PixelImage PixelImage;
 
 //Setup
 Setup Setup;
@@ -91,6 +93,7 @@ void FixedUpdate() {
   noStroke(); RainManager.Update(); stroke(1);
   CubeManager.Update();
   EnemyManager.Update();
+  PixelImage.Update();
 
   currentSoundPlays = 0;
 }

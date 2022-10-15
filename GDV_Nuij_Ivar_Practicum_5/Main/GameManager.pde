@@ -28,10 +28,12 @@ class GameManager{
   //------------------------------
   
   void SetupTitleScreen(){
-    backgroundMusic.play();
+    //backgroundMusic.play();
     
     CubeManager.AddCubesRandom(100, (displayWidth - 100), -30000, -100, 100, 100, 0.2, 10, 1000);
     RainManager.rainAmount = 10;
+    
+    PixelImage.Add(monaLisa, displayWidth / 4, displayHeight / 4, 400, 2);
   }
   
   void TitleScreen(){
