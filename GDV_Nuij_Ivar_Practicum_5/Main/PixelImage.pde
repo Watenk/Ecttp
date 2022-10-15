@@ -80,15 +80,30 @@ class PixelImage {
       for (x=0; x < widthResolution; x += 1) {
         
         if (mode == "Characters"){
-          fill(1);
+          fill(0);
           textSize(pixelSize);
           int intDarkness = int(map(resizedPixelList[x][y], 1, 255, characters.length - 1, 0));
           text(characters[intDarkness], xDraw, yDraw);
-          
         }
-        else{
+        else if (mode == "OldTV"){
+          fill(resizedPixelList[x][y] + int(random(-50, 50)));
+          rect(xDraw, yDraw, pixelSize, pixelSize);
+        }
+        else if (mode == "OldColorTV"){
+          fill(resizedPixelList[x][y] + int(random(-50, 50)), resizedPixelList[x][y] + int(random(-50, 50)), resizedPixelList[x][y] + int(random(-50, 50)));
+          rect(xDraw, yDraw, pixelSize, pixelSize);
+        }
+        else if(mode == "BlackOrWhite"){
+          if (resizedPixelList[x][y] > 127) fill(255);
+          if (resizedPixelList[x][y] <= 127) fill(0);
+          rect(xDraw, yDraw, pixelSize, pixelSize);
+        }
+        else if (mode == "GrayScale"){
           fill(resizedPixelList[x][y]);
           rect(xDraw, yDraw, pixelSize, pixelSize);
+        }
+        else{
+          println("No Mode Selected (Probably a typo)");
         }
         
         //Why is set so inefficient??
