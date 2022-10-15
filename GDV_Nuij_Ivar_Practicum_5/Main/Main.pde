@@ -1,4 +1,4 @@
-//Ecttp les 06
+//Ecttp les 07
 //Ivar Nuij
 
 //Idea List-------------------------------------
@@ -8,16 +8,27 @@
 //Custom cursor (cursor())
 
 //To Do
-//Fix Scaling Pos issues
 //Collision with player - WIP
 //CubeCollision with wall - ??
-//performance improvements (Rain, improve fixedUpdate(), loadtimes!, color functions (red(), etc), PImage.get())
+//performance improvements (Rain, fixedUpdate(), loadtimes!, color functions (red(), etc), PImage.get())
 
 //-------------------------------------------------
 
 //GameSettings
 float FPS = 300; // lower than updateSpeed causes slowdown
 float updateSpeed = 60; //60 Times a second
+
+//Library's
+import processing.sound.*;
+import processing.video.*;
+
+//Video's
+PixelVideo PixelVideo;
+public Movie movie;
+public PImage currentMovieFrame;
+
+//Animations
+PImage[] rainSplash = new PImage[20];
 
 //Sprites
 public PImage rainDrop;
@@ -26,11 +37,7 @@ public PImage play;
 public PImage title;
 public PImage monaLisa;
 
-PImage[] rainSplash = new PImage[20];
-
-//Sound
-import processing.sound.*;
-
+//Sounds
 public float maxSoundPlays = 1; //max sounds each frame
 public float currentSoundPlays;
 
@@ -77,7 +84,7 @@ void setup() {
   //To Check the rest of Setup see Setup class
 
   frameRate(FPS);
-  fullScreen(P2D);
+  fullScreen(P2D); //JAVA2D (default) - P2D - P3D (openGL)
   smooth(); // Anti-Ailiasing
 
   textSize(50);
@@ -87,12 +94,15 @@ void setup() {
 void FixedUpdate() {
 
   background(175);
-  
+
   Wind.Update();
   Collision.Update();
-  noStroke(); RainManager.Update(); stroke(1);
+  noStroke();
+  RainManager.Update();
+  stroke(1);
   CubeManager.Update();
   EnemyManager.Update();
+  PixelVideo.Update();
   PixelImage.Update();
 
   currentSoundPlays = 0;
@@ -116,7 +126,7 @@ void draw() {
     FixedUpdate();
     Time.updateFixedUpdate = 0;
   }
-  
+
   GameManager.Update();
   UI.update();
 }

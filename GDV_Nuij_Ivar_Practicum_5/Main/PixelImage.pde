@@ -3,7 +3,8 @@ class PixelImage {
   PImage currentImage;
   int xPos;
   int yPos;
-  int imageResolution;
+  int imageWidthResolution;
+  int imageHeightResolution;
   int pixelSize;
 
   int[][] pixelList;
@@ -17,16 +18,17 @@ class PixelImage {
   PixelImage() {
   }
 
-  void Add(PImage _currentImage, int _xPos, int _yPos, int _imageResolution, int _pixelSize) {
+  void Add(PImage _currentImage, int _xPos, int _yPos, int _imageWidthResolution, int _imageHeightResolution, int _pixelSize) {
     currentImage = _currentImage;
     xPos = _xPos;
     yPos = _yPos;
-    imageResolution = _imageResolution;
+    imageWidthResolution = _imageWidthResolution;
+    imageHeightResolution = _imageHeightResolution;
     pixelSize = _pixelSize;
 
     //Convert Image to a grayScale array
     pixelList = new int[currentImage.width][currentImage.height];
-    resizedPixelList = new int[imageResolution][imageResolution];
+    resizedPixelList = new int[imageWidthResolution][imageHeightResolution];
 
     currentImage.loadPixels();
 
@@ -49,12 +51,12 @@ class PixelImage {
       }
     }
 
-    int xResize = currentImage.width / imageResolution;
-    int yResize = currentImage.height / imageResolution;
+    int xResize = currentImage.width / imageWidthResolution;
+    int yResize = currentImage.height / imageHeightResolution;
 
     //Resize pixelList
-    for (int x=0; x < imageResolution; x += 1) {
-      for (int y=0; y < imageResolution; y += 1) {
+    for (int x=0; x < imageWidthResolution; x += 1) {
+      for (int y=0; y < imageHeightResolution; y += 1) {
 
         resizedPixelList[x][y] = pixelList[x * xResize][y * yResize];
       }
@@ -65,8 +67,8 @@ class PixelImage {
     //Draw PixelImage
     int x;
     int y;
-    for (y=0; y < imageResolution; y += 1) {
-      for (x=0; x < imageResolution; x += 1) {
+    for (y=0; y < imageHeightResolution; y += 1) {
+      for (x=0; x < imageWidthResolution; x += 1) {
         noStroke();
         fill(resizedPixelList[x][y], 255);
         rect(xDraw, yDraw, pixelSize, pixelSize);

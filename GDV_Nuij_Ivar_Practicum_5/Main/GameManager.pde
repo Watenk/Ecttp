@@ -33,11 +33,12 @@ class GameManager{
     CubeManager.AddCubesRandom(100, (displayWidth - 100), -30000, -100, 100, 100, 0.2, 10, 1000);
     RainManager.rainAmount = 10;
     
-    PixelImage.Add(monaLisa, displayWidth / 4, displayHeight / 4, 400, 2);
+    //PixelImage.Add(monaLisa, displayWidth / 4, displayHeight / 4, 100, 5);
   }
   
   void TitleScreen(){
     if (!titleScreenSetup) {SetupTitleScreen(); titleScreenSetup = true;}
+    
     
     UI.TitleScreen();
   }
@@ -46,6 +47,8 @@ class GameManager{
   void SetupLvl01(){
     EnemyManager.AddEnemy(100, 100, 100, 100, 2, 2, 1, 10, 2);
     Player1 = new Player1(displayWidth / 2 - (250 / 2), displayHeight + 50, 250, 50, 1);
+    
+    Video.Play("ai.mp4", 100, 100, 427, 240, 5);
   }
   
   void Lvl01(){

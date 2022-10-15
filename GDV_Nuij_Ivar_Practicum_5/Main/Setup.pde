@@ -2,22 +2,18 @@ class Setup {
   //To get around the max 5000ms loadtime in processing
 
   Setup() {
-
-    println("Setup");
-
     //Instance Classes
     Time = new Time();
     UI = new UI();
     Collision = new Collision();
     PixelImage = new PixelImage();
+    Video = new Video();
 
     CubeManager = new CubeManager();
     EnemyManager = new EnemyManager();
     RainManager = new RainManager();
 
     Wind = new Wind();
-
-    println("Arrays");
 
     //Instance Arrays
     Time.frameMillisList = new FloatList();
@@ -26,13 +22,11 @@ class Setup {
     EnemyManager.enemyList = new ArrayList<Enemy>();
     RainManager.rainList = new ArrayList<Rain>();
 
-    println("Sound");
+    //Animations
+    Animation = new Animation();
 
-    //Sound
-    backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.mp3");
-    hit = new SoundFile(Main.this, "sound/hit.wav");
-
-    println("Sprites");
+    Animation.AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
+    Animation.PreloadAnimation(rainSplash, 20);
 
     //Sprites
     rainDrop = loadImage("sprites/rainDrop.png");
@@ -40,16 +34,10 @@ class Setup {
     play = loadImage("sprites/play.png");
     title = loadImage("sprites/title.png");
     monaLisa = loadImage("sprites/monaLisa.png");
-
-    println("Animations");
-
-    //Animations
-    Animation = new Animation();
-
-    Animation.AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
-    Animation.PreloadAnimation(rainSplash, 20);
-
-    println("GameManager");
+    
+    //Sound
+    backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.mp3");
+    hit = new SoundFile(Main.this, "sound/hit.wav");
 
     GameManager = new GameManager();
 
