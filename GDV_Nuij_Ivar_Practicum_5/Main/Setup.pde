@@ -6,6 +6,7 @@ class Setup {
     Time = new Time();
     UI = new UI();
     Collision = new Collision();
+    Camera = new Camera();
     PixelImage = new PixelImage();
     PixelVideo = new PixelVideo();
 

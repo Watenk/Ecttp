@@ -32,8 +32,6 @@ class GameManager{
     
     CubeManager.AddCubesRandom(100, (displayWidth - 100), -30000, -100, 100, 100, 0.2, 10, 1000);
     RainManager.rainAmount = 10;
-    
-    //PixelImage.Add(monaLisa, displayWidth / 4, displayHeight / 4, 100, 5);
   }
   
   void TitleScreen(){
@@ -48,7 +46,14 @@ class GameManager{
     EnemyManager.AddEnemy(100, 100, 100, 100, 2, 2, 1, 10, 2);
     Player1 = new Player1(displayWidth / 2 - (250 / 2), displayHeight + 50, 250, 50, 1);
     
-    PixelVideo.Play("ai.mp4", 100, 100, 427, 240, 4);
+    PixelVideo.Play("ai.mp4", 0, 0, 427, 240, 4, "");
+    //PixelVideo.Play("ai.mp4", 100, 10, 427, 240, 3, "Characters");
+    
+    //Camera.Play(0, 0, 320, 180, 5, "");
+    //Camera.Play(0, 0, 160, 90, 10, "");
+    
+    //Camera.Play(0, 0, 500, 300, 3, "Characters");
+    //Camera.Play(0, 0, 320, 180, 5, "Characters");
   }
   
   void Lvl01(){

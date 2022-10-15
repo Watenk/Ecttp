@@ -18,6 +18,8 @@ class UI{
   }
   
   void update(){
+    textSize(12);
+    
     //Performance
     if (Time.smoothFrameRate < 30){
       fill(255, 0, 0);

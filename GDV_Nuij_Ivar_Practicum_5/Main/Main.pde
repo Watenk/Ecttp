@@ -24,8 +24,9 @@ import processing.video.*;
 
 //Video's
 PixelVideo PixelVideo;
+Camera Camera;
+Capture cam;
 public Movie movie;
-public PImage currentMovieFrame;
 
 //Animations
 PImage[] rainSplash = new PImage[20];
@@ -102,6 +103,8 @@ void FixedUpdate() {
   stroke(1);
   CubeManager.Update();
   EnemyManager.Update();
+  
+  Camera.Update();
   PixelVideo.Update();
   PixelImage.Update();
 
