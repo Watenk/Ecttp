@@ -3,9 +3,9 @@ class PixelImage {
   PImage currentImage;
   int xPos;
   int yPos;
-  int imageWidthResolution;
-  int imageHeightResolution;
-  int pixelSize;
+  int widthResolution;
+  int heightResolution;
+  float pixelSize;
 
   int[][] pixelList;
   int[][] resizedPixelList;
@@ -18,45 +18,47 @@ class PixelImage {
   PixelImage() {
   }
 
-  void Add(PImage _currentImage, int _xPos, int _yPos, int _imageWidthResolution, int _imageHeightResolution, int _pixelSize) {
+  void Add(PImage _currentImage, int _xPos, int _yPos, int _imageWidthResolution, int _imageHeightResolution, float _pixelSize) {
     currentImage = _currentImage;
     xPos = _xPos;
     yPos = _yPos;
-    imageWidthResolution = _imageWidthResolution;
-    imageHeightResolution = _imageHeightResolution;
+    widthResolution = _imageWidthResolution;
+    heightResolution = _imageHeightResolution;
     pixelSize = _pixelSize;
 
     //Convert Image to a grayScale array
     pixelList = new int[currentImage.width][currentImage.height];
-    resizedPixelList = new int[imageWidthResolution][imageHeightResolution];
+    resizedPixelList = new int[widthResolution][heightResolution];
 
     currentImage.loadPixels();
 
     //make PixelList
     for (int x=0; x < currentImage.width; x += 1) {
       for (int y=0; y < currentImage.height; y += 1) {
-        currentColor = currentImage.get(x, y);
+        //currentColor = currentImage.get(x, y);
+        currentColor = currentImage.pixels[y * currentImage.width + x];
 
         int grayScale;
         float red;
         float green;
         float blue;
 
-        red = red(currentColor);
-        green = green(currentColor);
-        blue = blue(currentColor);
+        red = currentColor >> 16 & 0xFF;
+        green = currentColor >> 8 & 0xFF;
+        blue = currentColor & 0xFF;
 
         grayScale = int((red + green + blue) / 2);
+        if (grayScale > 255) grayScale = 255;
         pixelList[x][y] = grayScale;
       }
     }
 
-    int xResize = currentImage.width / imageWidthResolution;
-    int yResize = currentImage.height / imageHeightResolution;
+    int xResize = currentImage.width / widthResolution;
+    int yResize = currentImage.height / heightResolution;
 
     //Resize pixelList
-    for (int x=0; x < imageWidthResolution; x += 1) {
-      for (int y=0; y < imageHeightResolution; y += 1) {
+    for (int x=0; x < widthResolution; x += 1) {
+      for (int y=0; y < heightResolution; y += 1) {
 
         resizedPixelList[x][y] = pixelList[x * xResize][y * yResize];
       }
@@ -67,12 +69,12 @@ class PixelImage {
     //Draw PixelImage
     int x;
     int y;
-    for (y=0; y < imageHeightResolution; y += 1) {
-      for (x=0; x < imageWidthResolution; x += 1) {
-        noStroke();
+
+    noStroke();
+    for (y=0; y < heightResolution; y += 1) {
+      for (x=0; x < widthResolution; x += 1) {
         fill(resizedPixelList[x][y], 255);
         rect(xDraw, yDraw, pixelSize, pixelSize);
-        stroke(1);
         xDraw += pixelSize;
       }
       yDraw += pixelSize;
@@ -80,5 +82,6 @@ class PixelImage {
     }
     xDraw = xPos;
     yDraw = yPos;
+    stroke(1);
   }
 }

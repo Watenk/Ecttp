@@ -10,7 +10,7 @@
 //To Do
 //Collision with player - WIP
 //CubeCollision with wall - ??
-//performance improvements (Rain, fixedUpdate(), loadtimes!, color functions (red(), etc), PImage.get())
+//performance improvements (Rain, fixedUpdate(), loadtimes!, replace rect in PixelImage with set())
 
 //-------------------------------------------------
 

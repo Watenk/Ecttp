@@ -5,17 +5,17 @@ class PixelVideo {
   int yPos;
   int Width;
   int Height;
-  int pixelSize;
+  float pixelSize;
 
   PixelVideo() {
   }
 
-  void Play(String _video, int _xPos, int _yPos, int _width, int _height, int _pixelSize) {
+  void Play(String _video, int _xPos, int _yPos, int _width, int _height, float _pixelSize) {
     xPos= _xPos;
     yPos = _yPos;
     Width = _width;
     Height = _height;
-    pixelSize = _pixelSize;
+    pixelSize = _pixelSize * displayWidth / 1920;
 
     movie = new Movie(Main.this, _video);
     movie.play();
@@ -30,8 +30,6 @@ class PixelVideo {
       currentMovieFrame = movie.copy();
       image(movie, -1000, -1000);
 
-      fill(255);
-      rect(xPos, yPos, Width * pixelSize, Height * pixelSize);
       PixelImage.Add(currentMovieFrame, xPos, yPos, Width, Height, pixelSize);
     }
   }

@@ -48,7 +48,7 @@ class GameManager{
     EnemyManager.AddEnemy(100, 100, 100, 100, 2, 2, 1, 10, 2);
     Player1 = new Player1(displayWidth / 2 - (250 / 2), displayHeight + 50, 250, 50, 1);
     
-    Video.Play("ai.mp4", 100, 100, 427, 240, 5);
+    PixelVideo.Play("ai.mp4", 100, 100, 427, 240, 4);
   }
   
   void Lvl01(){

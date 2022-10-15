@@ -7,7 +7,7 @@ class Setup {
     UI = new UI();
     Collision = new Collision();
     PixelImage = new PixelImage();
-    Video = new Video();
+    PixelVideo = new PixelVideo();
 
     CubeManager = new CubeManager();
     EnemyManager = new EnemyManager();
