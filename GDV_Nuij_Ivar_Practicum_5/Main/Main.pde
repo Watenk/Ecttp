@@ -26,6 +26,7 @@ import processing.video.*;
 PixelVideo PixelVideo;
 Camera Camera;
 Capture cam;
+HandDetection HandDetection;
 public Movie movie;
 
 //Animations

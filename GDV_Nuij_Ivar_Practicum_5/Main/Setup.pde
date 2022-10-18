@@ -9,6 +9,7 @@ class Setup {
     Camera = new Camera();
     PixelImage = new PixelImage();
     PixelVideo = new PixelVideo();
+    HandDetection = new HandDetection();
 
     CubeManager = new CubeManager();
     EnemyManager = new EnemyManager();

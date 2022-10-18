@@ -6,12 +6,12 @@ class PixelImage {
   
   int xPos;
   int yPos;
-  int widthResolution;
+  public int widthResolution;
   int heightResolution;
   float pixelSize;
 
   int[][] pixelList;
-  int[][] resizedPixelList;
+  public int[][] resizedPixelList;
   String[] characters = {" ", " "," ", ".", "`", "-", "^", "v", "2", "3", "5", "=", "%", "c", "l", "x", "#", "w", "F", "A", "&", "8", "U", "$", "@", "ñ", "■","■", "■", "■"};
 
   color currentColor;
