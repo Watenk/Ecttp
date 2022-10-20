@@ -25,10 +25,9 @@ class Setup {
     RainManager.rainList = new ArrayList<Rain>();
 
     //Animations
-    Animation = new Animation();
-
-    Animation.AddAnimation(rainSplash, "animation/rainSplash/rainSplash", 20);
-    Animation.PreloadAnimation(rainSplash, 20);
+    PixelImageRainSplash = new PixelImage();
+    rainAtlas = loadImage("animation/rainSplash/rainAtlas.png");
+    PixelImageRainSplash.Add(rainAtlas, 0, 0, 25, 500, 5, "RGB");
 
     //Sprites
     rainDrop = loadImage("sprites/rainDrop.png");
@@ -38,7 +37,7 @@ class Setup {
     monaLisa = loadImage("sprites/monaLisa.png");
     
     //Sound
-    backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.mp3");
+    backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.wav");
     hit = new SoundFile(Main.this, "sound/hit.wav");
 
     GameManager = new GameManager();

@@ -51,7 +51,7 @@ class GameManager{
     
     //Camera.Play(0, 0, 320, 180, 5, "GrayScale");
     //Camera.Play(0, 0, 160, 90, 10, "GrayScale");
-    Camera.Play(0, 0, 80, 45, 10, "GrayScale");
+    Camera.Play(0, 0, 80, 45, 10, "RGB");
   }
   
   void Lvl01(){

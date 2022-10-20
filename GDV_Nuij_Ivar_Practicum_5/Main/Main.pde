@@ -8,9 +8,10 @@
 //Custom cursor (cursor())
 
 //To Do
+//Player follow hand - WIP
 //Collision with player - WIP
 //CubeCollision with wall - ??
-//performance improvements (Rain, fixedUpdate(), loadtimes!, replace rect in PixelImage with set())
+//performance improvements (Rain, fixedUpdate())
 
 //-------------------------------------------------
 
@@ -30,7 +31,8 @@ HandDetection HandDetection;
 public Movie movie;
 
 //Animations
-PImage[] rainSplash = new PImage[20];
+public PixelImage PixelImageRainSplash;
+public PImage rainAtlas;
 
 //Sprites
 public PImage rainDrop;
@@ -62,7 +64,6 @@ Player1 Player1;
 Wind Wind;
 RainManager RainManager;
 
-Animation Animation;
 PixelImage PixelImage;
 
 //Setup
@@ -90,18 +91,17 @@ void setup() {
   smooth(); // Anti-Ailiasing
 
   textSize(50);
-  text("Loading... - can take up to a minute :/", displayWidth / 4, displayHeight / 2);
+  text("Loading...", displayWidth / 2 * 0.9, displayHeight / 2);
 }
 
 void FixedUpdate() {
 
   background(175);
-
+  
   Wind.Update();
   Collision.Update();
-  noStroke();
+
   RainManager.Update();
-  stroke(1);
   CubeManager.Update();
   EnemyManager.Update();
   

@@ -4,8 +4,8 @@ class Rain{
   boolean animation;
   
   float rainScale = 1;
-  float xPos = random(0 - (displayWidth / 2), displayWidth + (displayWidth / 2));
-  float yPos = random(-5000, -400);
+  int xPos = int(random(0 - (displayWidth / 2), displayWidth + (displayWidth / 2)));
+  int yPos = int(random(-5000, -400));
   float rainWidthAmount = 50;
   float rainHeightAmount = 50;
   
@@ -17,14 +17,13 @@ class Rain{
   
   float alpha = random(10, 40);
   
-  Animation Animation;
-  float animationSize = random(25, 75) * (displayWidth / 1920);
-  float animationXPos;
+  Animation AnimationRainSplash;
+  int animationXPos;
   
   //------------------------------
   
   Rain(){
-    Animation = new Animation();
+    AnimationRainSplash = new Animation();
   }
   
   void Update(){
@@ -64,17 +63,16 @@ class Rain{
       xSpeed *= -1;
     }
     
-    if(yPos > displayHeight){
+    if(yPos > displayHeight && !animation){
       animation = true;
       animationXPos = xPos;
-      yPos = -2000;
     }
   }
   
   void SplashAnimation(){
-    Animation.Play(rainSplash, 20, animationXPos, displayHeight - animationSize, animationSize, animationSize);
+    AnimationRainSplash.Play(PixelImageRainSplash, 20, animationXPos, displayHeight - 125);
       
-    if (Animation.isDone == true){
+    if (AnimationRainSplash.isDone == true){
       canBeDeleted = true;
     }
   }

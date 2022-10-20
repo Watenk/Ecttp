@@ -1,32 +1,35 @@
 class Animation {
 
-  
   boolean isDone;
   int currentFrame = 1;
+  int frameAmount;
 
-  Animation() {
-  }
+  int xDraw;
+  int yDraw;
 
-  void Play(PImage[] frames, int frameAmount, float xPos, float yPos, float animationWidth, float animationHeight) {
+  void Play(PixelImage pixelImage, int frameAmount, int _xPos, int _yPos) {
+    noStroke();
+    
+    int yStart = currentFrame * pixelImage.widthResolution;
+    for (int y=yStart; y < yStart + (pixelImage.heightResolution / frameAmount); y += 1) {
+      for (int x=0; x < pixelImage.widthResolution; x += 1) {
+        fill(pixelImage.resizedPixelList[x][y]);
+        rect(xDraw, yDraw, pixelImage.pixelSize, pixelImage.pixelSize);
+        
+        xDraw += pixelImage.pixelSize;
+      }
+      yDraw += pixelImage.pixelSize;
+      xDraw = _xPos;
+    }
+    xDraw = _xPos;
+    yDraw = _yPos;
 
-    if (currentFrame == frameAmount) {
+    stroke(1);
+
+    currentFrame += 1;
+
+    if (currentFrame >= 20) {
       isDone = true;
-    } else {
-      image(frames[currentFrame], xPos, yPos, animationWidth, animationHeight);
-      currentFrame += 1;
-    }
-  }
-
-  void AddAnimation(PImage[] frames, String sprite, int frameAmount) {
-    for (int i=0; i < frameAmount; i += 1) {
-      String fileName = sprite + nf(i + 1, 4) + ".png";
-      frames[i] = loadImage(fileName);
-    }
-  }
-
-  void PreloadAnimation(PImage[] frames, int frameAmount) {
-    for (int i=0; i < frameAmount; i += 1) {
-      image(frames[i], 0, 0, 10, 10);
     }
   }
 }
