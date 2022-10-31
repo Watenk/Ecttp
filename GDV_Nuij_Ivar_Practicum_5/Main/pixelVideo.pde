@@ -34,7 +34,7 @@ class PixelVideo {
       currentMovieFrame = movie.copy();
       image(movie, -1000, -1000);
 
-      PixelImage.Add(currentMovieFrame, xPos, yPos, Width, Height, pixelSize, mode);
+      //PixelImage.Add(currentMovieFrame, xPos, yPos, Width, Height, pixelSize, mode);
     }
   }
 }

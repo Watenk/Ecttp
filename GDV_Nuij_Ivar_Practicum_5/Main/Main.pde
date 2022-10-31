@@ -1,4 +1,4 @@
-//Ecttp les 07
+//Ecttp les 08
 //Ivar Nuij
 
 //Idea List-------------------------------------
@@ -24,8 +24,6 @@ import processing.sound.*;
 import processing.video.*;
 
 //Video's
-PixelVideo PixelVideo;
-Camera Camera;
 Capture cam;
 HandDetection HandDetection;
 public Movie movie;
@@ -63,8 +61,6 @@ Player1 Player1;
 
 Wind Wind;
 RainManager RainManager;
-
-PixelImage PixelImage;
 
 //Setup
 Setup Setup;
@@ -105,9 +101,7 @@ void FixedUpdate() {
   CubeManager.Update();
   EnemyManager.Update();
   
-  Camera.Update();
-  PixelVideo.Update();
-  PixelImage.Update();
+  HandDetection.Update();
 
   currentSoundPlays = 0;
 }

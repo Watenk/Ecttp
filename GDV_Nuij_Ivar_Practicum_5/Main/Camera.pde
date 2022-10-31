@@ -1,7 +1,10 @@
 class Camera {
 
-  public PImage currentCameraFrame;
+  int camFPSAmount = 10;
+  int camFPS;
 
+  public PixelImage PixelImage;
+  public PImage currentCameraFrame;
   boolean cameraPlaying;
 
   int xPos;
@@ -12,6 +15,9 @@ class Camera {
   String mode;
 
   void Play(int _xPos, int _yPos, int _width, int _height, float _pixelSize, String _mode) {
+
+    PixelImage = new PixelImage();
+
     xPos= _xPos;
     yPos = _yPos;
     Width = _width;
@@ -33,18 +39,24 @@ class Camera {
       cam.start();
 
       cameraPlaying = true;
+      
+      HandDetection.Start(PixelImage);
     }
   }
 
   void Update() {
     if (cameraPlaying == true) {
+      if (camFPS >= 60 / camFPSAmount) {
+        cam.read();
+        cam.loadPixels();
+        image(cam, -1000, -1000); 
+        currentCameraFrame = cam.copy();
 
-      cam.read();
-      cam.loadPixels();
-      currentCameraFrame = cam.copy();
-      image(cam, -1000, -1000);
-
-      PixelImage.Add(currentCameraFrame, xPos, yPos, Width, Height, pixelSize, mode);
+        PixelImage.Add(currentCameraFrame, xPos, yPos, Width, Height, pixelSize, mode);
+        camFPS = 0;
+      }
+      PixelImage.Draw();
     }
+    camFPS += 1;
   }
 }

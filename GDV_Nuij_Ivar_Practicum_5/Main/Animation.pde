@@ -13,7 +13,7 @@ class Animation {
     int yStart = currentFrame * pixelImage.widthResolution;
     for (int y=yStart; y < yStart + (pixelImage.heightResolution / frameAmount); y += 1) {
       for (int x=0; x < pixelImage.widthResolution; x += 1) {
-        fill(pixelImage.resizedPixelList[x][y]);
+        fill(pixelImage.resizedPixelColor[x][y]);
         rect(xDraw, yDraw, pixelImage.pixelSize, pixelImage.pixelSize);
         
         xDraw += pixelImage.pixelSize;

@@ -6,12 +6,22 @@ class PixelImage {
 
   int xPos;
   int yPos;
-  public int widthResolution;
-  int heightResolution;
   float pixelSize;
+  public int widthResolution;
+  public int heightResolution;
 
-  int[][] pixelList;
-  public int[][] resizedPixelList;
+  int[][] pixelR;
+  int[][] pixelG;
+  int[][] pixelB;
+  int[][] pixelA;
+  int[][] pixelColor;
+
+  int[][] resizedPixelR;
+  int[][] resizedPixelG;
+  int[][] resizedPixelB;
+  int[][] resizedPixelA;
+  int[][] resizedPixelColor;
+
   String[] characters = {" ", " ", " ", ".", "`", "-", "^", "v", "2", "3", "5", "=", "%", "c", "l", "x", "#", "w", "F", "A", "&", "8", "U", "$", "@", "ñ", "■", "■", "■", "■"};
 
   color currentColor;
@@ -28,8 +38,17 @@ class PixelImage {
     heightResolution = _imageHeightResolution;
     pixelSize = _pixelSize;
 
-    pixelList = new int[currentImage.width][currentImage.height];
-    resizedPixelList = new int[widthResolution][heightResolution];
+    pixelR = new int[currentImage.width][currentImage.height];
+    pixelG = new int[currentImage.width][currentImage.height];
+    pixelB = new int[currentImage.width][currentImage.height];
+    pixelA = new int[currentImage.width][currentImage.height];
+    pixelColor = new int[currentImage.width][currentImage.height];
+
+    resizedPixelR = new int[widthResolution][heightResolution];
+    resizedPixelG = new int[widthResolution][heightResolution];
+    resizedPixelB = new int[widthResolution][heightResolution];
+    resizedPixelA = new int[widthResolution][heightResolution];
+    resizedPixelColor = new int[widthResolution][heightResolution];
 
     currentImage.loadPixels();
 
@@ -38,20 +57,21 @@ class PixelImage {
       for (int y=0; y < currentImage.height; y += 1) {
         currentColor = currentImage.pixels[y * currentImage.width + x];
 
-        ////GrayScale
-        //int grayScale;
-        //float red;
-        //float green;
-        //float blue;
+        float red;
+        float green;
+        float blue;
+        float alpha;
 
-        //red = currentColor >> 16 & 0xFF;
-        //green = currentColor >> 8 & 0xFF;
-        //blue = currentColor & 0xFF;
+        red = currentColor >> 16 & 0xFF;
+        green = currentColor >> 8 & 0xFF;
+        blue = currentColor & 0xFF;
+        alpha = (red + green + blue) / 3;
 
-        //grayScale = int((red + green + blue) / 2);
-        //if (grayScale > 255) grayScale = 255;
-
-        pixelList[x][y] = currentColor;
+        pixelR[x][y] = int(red);
+        pixelG[x][y] = int(green);
+        pixelB[x][y] = int(blue);
+        pixelA[x][y] = int(alpha);
+        pixelColor[x][y] = currentColor;
       }
     }
 
@@ -62,53 +82,50 @@ class PixelImage {
     for (int y=0; y < heightResolution; y += 1) {
       for (int x=0; x < widthResolution; x += 1) {
 
-        resizedPixelList[x][y] = pixelList[x * xResize][y * yResize];
+        resizedPixelR[x][y] = pixelR[x * xResize][y * yResize];
+        resizedPixelG[x][y] = pixelG[x * xResize][y * yResize];
+        resizedPixelB[x][y] = pixelB[x * xResize][y * yResize];
+        resizedPixelA[x][y] = pixelA[x * xResize][y * yResize];
+        resizedPixelColor[x][y] = pixelColor[x * xResize][y * yResize];
       }
     }
   }
 
-  void Update() {
+  void Draw() {
     //Draw PixelImage
-    int x;
-    int y;
 
     noStroke();
-    for (y=0; y < heightResolution; y += 1) {
-      for (x=0; x < widthResolution; x += 1) {
-
+    for (int y=0; y < heightResolution; y += 1) {
+      for (int x=0; x < widthResolution; x += 1) {
+        
+        //Different drawModes
         if (mode == "RGB") {
-          fill(resizedPixelList[x][y]);
+          fill(color(resizedPixelR[x][y], resizedPixelG[x][y], resizedPixelB[x][y]));
+          rect(xDraw, yDraw, pixelSize, pixelSize);
+        } else if (mode == "GrayScale") {
+          fill(resizedPixelA[x][y]);
           rect(xDraw, yDraw, pixelSize, pixelSize);
         } else if (mode == "Characters") {
           fill(0);
           textSize(pixelSize);
-          int intDarkness = int(map(resizedPixelList[x][y], 1, 255, characters.length - 1, 0));
+          int intDarkness = int(map(resizedPixelA[x][y], 1, 255, characters.length - 1, 0));
           text(characters[intDarkness], xDraw, yDraw);
         } else if (mode == "OldTV") {
-          fill(resizedPixelList[x][y] + int(random(-50, 50)));
+          fill(resizedPixelA[x][y] + int(random(-50, 50)));
           rect(xDraw, yDraw, pixelSize, pixelSize);
         } else if (mode == "OldColorTV") {
-          fill(resizedPixelList[x][y] + int(random(-50, 50)), resizedPixelList[x][y] + int(random(-50, 50)), resizedPixelList[x][y] + int(random(-50, 50)));
+          fill(resizedPixelR[x][y] + int(random(-50, 50)), resizedPixelG[x][y] + int(random(-50, 50)), resizedPixelB[x][y] + int(random(-50, 50)));
           rect(xDraw, yDraw, pixelSize, pixelSize);
         } else if (mode == "BlackOrWhite") {
-          if (resizedPixelList[x][y] > 127) fill(255);
-          if (resizedPixelList[x][y] <= 127) fill(0);
-          rect(xDraw, yDraw, pixelSize, pixelSize);
-        } else if (mode == "GrayScale") {
-          fill(resizedPixelList[x][y]);
+          if (resizedPixelA[x][y] > 127) fill(255);
+          if (resizedPixelA[x][y] <= 127) fill(0);
           rect(xDraw, yDraw, pixelSize, pixelSize);
         } else {
           println("No Mode Selected (Probably a typo)");
         }
-
-        //Why is set so inefficient??
-
-        //for (int i=0; i < pixelSize; i += 1){
-        //  for (int j=0; j < pixelSize; j += 1){
-        //    set(xDraw + j, yDraw + i, endColor);
-        //  }
-        //}
-
+        
+        updatePixels();
+        
         xDraw += pixelSize;
       }
       yDraw += pixelSize;

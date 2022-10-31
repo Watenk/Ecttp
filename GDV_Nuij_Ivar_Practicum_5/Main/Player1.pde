@@ -52,6 +52,8 @@ class Player1 extends Shape{
     if (ySpeed <= 0.1 && ySpeed >= -0.1){
       ySpeed = 0;
     }
+    
+    xPos = lerp(xPos, HandDetection.handPos, 0.01);
   }
   
   void WallCollision(){
