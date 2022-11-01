@@ -53,7 +53,7 @@ class Player1 extends Shape{
       ySpeed = 0;
     }
     
-    xPos = lerp(xPos, HandDetection.handPos, 0.01);
+    xPos = lerp(xPos, HandDetection.handPos, 0.1);
   }
   
   void WallCollision(){

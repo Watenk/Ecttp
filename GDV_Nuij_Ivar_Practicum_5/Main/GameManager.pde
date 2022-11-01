@@ -5,7 +5,7 @@ class GameManager {
   boolean titleScreenSetup;
   boolean lvl01Setup;
 
-  Camera Camera;
+  public Camera Camera;
 
   GameManager() {
     currentScene = "TitleScreen";
@@ -56,8 +56,8 @@ class GameManager {
     //PixelVideo.Play("ai.mp4", 0, 0, 427, 240, 4, "");
     //PixelVideo.Play("ai.mp4", 100, 10, 427, 240, 3, "BlackOrWhite");
 
-    //Camera.Play(0, 0, 80, 45, 10, "RGB");
-    Camera.Play(0, 0, 80, 45, 10, "GrayScale");
+    Camera.Play(-1000, -1000, 80, 45, 10, "RGB");
+    //Camera.Play(0, 0, 80, 45, 10, "GrayScale");
     //Camera.Play(0, 0, 80, 45, 10, "Characters");
     //Camera.Play(0, 0, 250, 200, 4, "BlackOrWhite");
   }

@@ -40,7 +40,7 @@ class Camera {
 
       cameraPlaying = true;
       
-      HandDetection.Start(PixelImage);
+      HandDetection.Start();
     }
   }
 
