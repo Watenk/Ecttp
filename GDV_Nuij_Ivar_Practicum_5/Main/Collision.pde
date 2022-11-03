@@ -1,9 +1,11 @@
 class Collision {
 
   public ArrayList<Shape> collisionList;
-  float collisionSlowdown = 0.5;  //When 2 cubes hit how much they slow down 
+  float collisionSlowdown = 0.5;  //When 2 cubes hit how much they slow down
   float collisionDetectRange = 50; //Cube detect range for other cubes (low values can cause collision inaccuracy)
   float collisionRepultion = 0;
+
+  boolean playerExists;
 
   Collision() {
     collisionList = new ArrayList<Shape>();
@@ -27,7 +29,7 @@ class Collision {
         if (dist(object1.xPos, object1.yPos, object2.xPos, object2.yPos) < collisionDetectRange && object1 != object2) { //Check if cubes are close to each other
 
           //Pos 3
-          if (object1.xPos3 >= object2.xPos && object1.yPos3 >= object2.yPos && object1.xPos3 <= object2.xPos4 && object1.yPos3 <= object2.yPos4) { 
+          if (object1.xPos3 >= object2.xPos && object1.yPos3 >= object2.yPos && object1.xPos3 <= object2.xPos4 && object1.yPos3 <= object2.yPos4) {
 
             if (object1.ySpeed > 0.1 && object2.ySpeed > 0.1) {  //cube1 & 2 speed going down
               object1.ySpeed *= collisionSlowdown;
@@ -49,16 +51,13 @@ class Collision {
             } else {
               object1.ySpeed *= collisionSlowdown;
               object2.ySpeed *= collisionSlowdown;
-
-              //if (cube1.ySpeed < 0.1) cube1.ySpeed = 0;
-              //if (cube2.ySpeed < 0.1) cube2.ySpeed = 0;
 
               object1.yPos = object2.yPos - object1.Height - collisionRepultion;
             }
           }
 
           //Pos 4
-          if (object1.xPos4 >= object2.xPos && object1.yPos4 >= object2.yPos && object1.xPos4 <= object2.xPos4 && object1.yPos4 <= object2.yPos4) { 
+          if (object1.xPos4 >= object2.xPos && object1.yPos4 >= object2.yPos && object1.xPos4 <= object2.xPos4 && object1.yPos4 <= object2.yPos4) {
 
             if (object1.ySpeed > 0.1 && object2.ySpeed > 0.1) {  //cube1 & 2 speed going down
               object1.ySpeed *= collisionSlowdown;
@@ -80,9 +79,6 @@ class Collision {
             } else {
               object1.ySpeed *= collisionSlowdown;
               object2.ySpeed *= collisionSlowdown;
-
-              //if (cube1.ySpeed < 0.1) cube1.ySpeed = 0;
-              //if (cube2.ySpeed < 0.1) cube2.ySpeed = 0;
 
               object1.yPos = object2.yPos - object1.Height - collisionRepultion;
             }

@@ -47,6 +47,7 @@ class Camera {
   void Update() {
     if (cameraPlaying == true) {
       if (camFPS >= 60 / camFPSAmount) {
+        if (cam.available())
         cam.read();
         cam.loadPixels();
         image(cam, -1000, -1000); 

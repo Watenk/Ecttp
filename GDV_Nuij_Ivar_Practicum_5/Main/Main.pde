@@ -5,12 +5,11 @@
 //Weather
 //Time (day / night)
 //2-player
+//Camera overlaps with cubes
 //Custom cursor (cursor())
 
 //To Do
-//Player follow hand - WIP
-//Collision with player - WIP
-//CubeCollision with wall - ??
+//Gameplay =)
 //performance improvements (Rain, fixedUpdate())
 
 //-------------------------------------------------
@@ -72,10 +71,6 @@ int currentDisplayHeight;
 
 //Input
 public boolean spacebar;
-public boolean w;
-public boolean d;
-public boolean s;
-public boolean a;
 
 //----------------------------------------------------
 
@@ -133,26 +128,9 @@ void draw() {
 
 //Inputs - Only works in a class with draw()
 void keyPressed() {
-  if (key == 'a') {
-    a = true;
-  }
-
-  if (key == 'd') {
-    d = true;
-  }
-
-  if (key == 'w') {
-    w = true;
-  }
-
-  if (key == 's') {
-    s = true;
-  }
-
   if (key == ' ') {
     spacebar = true;
   }
-
 
   if (key == ESC) {
     exit();
@@ -160,22 +138,6 @@ void keyPressed() {
 }
 
 void keyReleased() {
-  if (key == 'a') {
-    a = false;
-  }
-
-  if (key == 'd') {
-    d = false;
-  }
-
-  if (key == 'w') {
-    w = false;
-  }
-
-  if (key == 's') {
-    s = false;
-  }
-
   if (key == ' ') {
     spacebar = false;
   }

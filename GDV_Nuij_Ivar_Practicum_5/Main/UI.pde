@@ -59,7 +59,6 @@ class UI{
     
     if (mouseX >= playButtonXPosScale && mouseY >= playButtonYPosScale && mouseX <= playButtonXPosScale + playButtonWidthScale && mouseY <= playButtonYPosScale + playButtonHeightScale && mousePressed == true){ //If mouse is in play button and mouseclick, load scene
       GameManager.currentScene = "Lvl01";
-      CubeManager.cubeList.clear();
     }
   }
 }

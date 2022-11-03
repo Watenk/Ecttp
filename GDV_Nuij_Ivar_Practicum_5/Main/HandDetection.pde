@@ -34,7 +34,6 @@ class HandDetection {
         }
       }
       handPos = int(map(mostSkinPixelsX, 0, GameManager.Camera.PixelImage.widthResolution, displayWidth, 0));
-      println(mostSkinPixelsX);
     }
   }
 }
