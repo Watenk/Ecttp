@@ -2,14 +2,15 @@ class Cube extends Shape{
   
   float maxSpeed = 20;
   float gravity = 0.2; 
-  float impactDeceleration = 2;
+  float impactDeceleration = 10;
   
   boolean isTouchingGround = false;
  
   //----------------------------------
 
-  Cube(float _xPos, float _yPos, float _cubeWidth, float _cubeHeight, float _Scale, float _Weight){
-    super(_xPos, _yPos, _cubeWidth, _cubeHeight, _Scale, _Weight);
+  Cube(float _xPos, float _yPos, float _cubeWidth, float _cubeHeight, float _scale, float _Weight, float _maxSpeed){
+    super(_xPos, _yPos, _cubeWidth, _cubeHeight, _scale, _Weight);
+    maxSpeed = _maxSpeed;
   }
   
   //-------------------------------------

@@ -38,8 +38,9 @@ class Rain {
     }
 
     //Draw
-    fill(0, 0, 200, alpha);
+    tint(0, 0, 200, 100);
     image(rainDrop, xPos, yPos, rainWidth, rainHeight);
+    noTint();
   }
 
   //--------------------------------

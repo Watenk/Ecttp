@@ -13,19 +13,14 @@ class UI{
   float playButtonXPos = displayWidth / 2 - playButtonWidth / 2;
   float playButtonYPos = displayHeight / 1.5 - playButtonHeight / 2;
 
-  
-  UI() {
-  }
-  
   void update(){
-    textSize(12);
+    textSize(15);
     
     //Performance
     if (Time.smoothFrameRate < 30){
       fill(255, 0, 0);
       text(int(Time.smoothFrameRate), 10, 20);
-      text("Game Slowed", 40, 20);
-      text("Considerably", 122, 20);
+      text("Game Slowed Considerably", 40, 20);
     }
     if (Time.smoothFrameRate <= 60 && Time.smoothFrameRate >= 30){
       fill(215, 115, 0);
@@ -38,7 +33,7 @@ class UI{
     }
   }
   
-  public void TitleScreen(){
+  void TitleScreen(){
     //Title
     float titleWidthScale = titleWidth * (displayWidth / 1920);
     float titleHeightScale = titleHeight * (displayWidth / 1920);
@@ -46,6 +41,12 @@ class UI{
     float titleYPosScale = titleYPos * (displayWidth / 1920);
     
     image(title, titleXPosScale, titleYPosScale, titleWidthScale, titleHeightScale);
+    textSize(32);
+    fill(100, 0, 100, 255);
+    text("Highscore:", 10, 75);
+    text(GameManager.highScore, 10, 110);
+    text("Seconds:", 10, 150);
+    text(GameManager.highTime, 10, 185);
     
     //Play Button    
     float playButtonWidthScale = playButtonWidth * (displayWidth / 1920);
@@ -60,5 +61,12 @@ class UI{
     if (mouseX >= playButtonXPosScale && mouseY >= playButtonYPosScale && mouseX <= playButtonXPosScale + playButtonWidthScale && mouseY <= playButtonYPosScale + playButtonHeightScale && mousePressed == true){ //If mouse is in play button and mouseclick, load scene
       GameManager.currentScene = "Lvl01";
     }
+  }
+  
+  void GameScreen(){
+    textSize(30);
+    fill(1);
+    text("Score: " + GameManager.score, displayWidth - 200, 50);
+    text("Time: " + GameManager.time, displayWidth - 200, 100);
   }
 }

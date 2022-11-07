@@ -4,7 +4,6 @@
 //Idea List-------------------------------------
 //Weather
 //Time (day / night)
-//2-player
 //Camera overlaps with cubes
 //Custom cursor (cursor())
 
@@ -89,6 +88,8 @@ void FixedUpdate() {
 
   background(175);
   
+  GameManager.Update();
+  
   Wind.Update();
   Collision.Update();
 
@@ -120,7 +121,6 @@ void draw() {
     Time.updateFixedUpdate = 0;
   }
 
-  GameManager.Update();
   UI.update();
 }
 
@@ -144,8 +144,9 @@ void keyReleased() {
 }
 
 void mousePressed() {
-  if (GameManager.currentScene == "MainMenu") {
+  if (GameManager.currentScene == "Lvl01") {
     if (mouseButton == LEFT) {
+      GameManager.score += 500;
     }
   }
 }

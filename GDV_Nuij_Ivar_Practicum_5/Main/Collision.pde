@@ -22,7 +22,11 @@ class Collision {
     //Collision
     for (int i=0; i < collisionList.size(); i += 1) {
       Shape object1 = collisionList.get(i);
-
+      
+      if (GameManager.currentScene == "Lvl01" && object1.yPos > displayHeight - 400 && object1.yPos < displayHeight - 400 + 50){
+        GameManager.loseBar += 1;
+      }
+      
       for (int j=0; j < collisionList.size(); j += 1) {
         Shape object2 = collisionList.get(j);
 

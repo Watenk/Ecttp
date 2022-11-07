@@ -23,7 +23,7 @@ public class Player1 extends Shape{
     CalcSpeed();
     PlayerCollision.Update();
     
-    fill(0, 150, 0);
+    fill(150, 0, 100);
     super.Update();
   }
   
