@@ -1,5 +1,7 @@
-//Ecttp les 09
+//Ecttp les 10
 //Ivar Nuij
+
+//The player follows the blackest object on your camera
 
 //Idea List-------------------------------------
 //Weather
@@ -8,7 +10,6 @@
 //Custom cursor (cursor())
 
 //To Do
-//Gameplay =)
 //performance improvements (Rain, fixedUpdate())
 
 //-------------------------------------------------
@@ -53,8 +54,7 @@ Shape Shape;
 Cube Cube;
 CubeManager CubeManager;
 Collision Collision;
-Enemy Enemy;
-EnemyManager EnemyManager;
+BombManager BombManager;
 Player1 Player1;
 
 Wind Wind;
@@ -95,7 +95,7 @@ void FixedUpdate() {
 
   RainManager.Update();
   CubeManager.Update();
-  EnemyManager.Update();
+  BombManager.Update();
   
   HandDetection.Update();
 
@@ -146,7 +146,7 @@ void keyReleased() {
 void mousePressed() {
   if (GameManager.currentScene == "Lvl01") {
     if (mouseButton == LEFT) {
-      GameManager.score += 500;
+      
     }
   }
 }

@@ -9,7 +9,7 @@ class Setup {
     HandDetection = new HandDetection();
 
     CubeManager = new CubeManager();
-    EnemyManager = new EnemyManager();
+    BombManager = new BombManager();
     RainManager = new RainManager();
 
     Wind = new Wind();
@@ -18,7 +18,7 @@ class Setup {
     Time.frameMillisList = new FloatList();
 
     CubeManager.cubeList = new ArrayList<Cube>();
-    EnemyManager.enemyList = new ArrayList<Enemy>();
+    BombManager.bombList = new ArrayList<Bomb>();
     RainManager.rainList = new ArrayList<Rain>();
 
     //Animations

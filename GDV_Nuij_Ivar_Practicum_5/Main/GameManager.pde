@@ -5,7 +5,7 @@ class GameManager {
   boolean titleScreenSetup;
   boolean lvl01Setup;
 
-  int difficulty = 50; // the lower the more difficult
+  int difficulty = 40; // the lower the more difficult
 
   //Scores
   String highScore = "0";
@@ -18,6 +18,8 @@ class GameManager {
   int time = 1;
   int timer;
   int summonTimer;
+  int bombTimer;
+  int bombTimerAmount = 10;
   float summonTimerAmount = 10;
 
   float loseBar;
@@ -58,6 +60,8 @@ class GameManager {
 
     CubeManager.cubeList.clear();
     CubeManager.AddCubesRandom(100, (displayWidth - 100), -30000, -100, 100, 100, 0.2, 0.2, 10, 2000, 20);
+    //BombManager.AddBomb(300, 300, 50, 50, 50, 50, 1, 1, 1);
+    
     RainManager.rainAmount = 0;
   }
 
@@ -104,7 +108,13 @@ class GameManager {
       time += 1;
       score += 1;
       summonTimer += 1;
+      bombTimer += 1;
       if (loseBar >= 1) loseBar *= 0.8;
+    }
+    
+    if (bombTimer > bombTimerAmount){
+      BombManager.AddRandomBomb(100, displayWidth - 100, -2000, -100, 50, 50, 40, 60, 40, 60, 1, 1, int(random(1, 2)));
+      bombTimer = 0;
     }
 
     //Summon cubes in certain time interfall - scales difficulty with score

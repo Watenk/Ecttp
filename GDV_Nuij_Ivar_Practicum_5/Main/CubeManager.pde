@@ -11,15 +11,6 @@ class CubeManager {
 
       currentCube.Update();
     }
-
-    //AddForce
-    if (spacebar == true) {
-      for (int i=0; i < cubeList.size(); i += 1) {
-        Cube currentCube = cubeList.get(i);
-
-        currentCube.AddForce();
-      }
-    }
   }
 
   void AddCubes(float _xPos, float _yPos, float _width, float _height, float _scale, float _weight, float _amount, float _maxSpeed) {

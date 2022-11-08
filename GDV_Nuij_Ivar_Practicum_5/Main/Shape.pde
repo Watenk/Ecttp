@@ -45,7 +45,7 @@ class Shape{
   }
   
   void CalcShape(){
-    xPos += (xSpeed + Wind.windSpeedX) / Weight;
+    xPos += (xSpeed + Wind.windSpeedX) * Weight / 10;
     yPos += ySpeed * Weight / 10;
     
     //Scale

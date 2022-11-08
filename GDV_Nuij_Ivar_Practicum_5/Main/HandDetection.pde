@@ -7,7 +7,7 @@ class HandDetection {
 
   void Start() {
     started = true;
-    skinAmount = new int[GameManager.Camera.PixelImage.widthResolution+100];
+    skinAmount = new int[GameManager.Camera.PixelImage.widthResolution+300];
   }
 
   void Update() {
