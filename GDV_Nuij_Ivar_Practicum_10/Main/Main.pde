@@ -1,8 +1,6 @@
 //Ecttp les 10
 //Ivar Nuij
 
-//The player follows the blackest object on your camera
-
 //Idea List-------------------------------------
 //Weather
 //Time (day / night)
@@ -48,6 +46,7 @@ public float currentSoundPlays;
 
 public SoundFile backgroundMusic;
 public SoundFile hit;
+public SoundFile boom;
 
 //Other
 Time Time;

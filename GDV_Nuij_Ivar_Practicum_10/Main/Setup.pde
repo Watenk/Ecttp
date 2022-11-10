@@ -39,8 +39,9 @@ class Setup {
     bomb = loadImage("sprites/bomb.png");
     
     //Sound
-    backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.wav");
+    backgroundMusic = new SoundFile(Main.this, "sound/backgroundMusic.mp3");
     hit = new SoundFile(Main.this, "sound/hit.wav");
+    boom = new SoundFile(Main.this, "sound/boom.wav");
 
     GameManager = new GameManager();
 

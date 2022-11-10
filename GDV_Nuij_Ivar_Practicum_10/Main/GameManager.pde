@@ -39,6 +39,8 @@ class GameManager {
 
   void Update() {
 
+    if (!backgroundMusic.isPlaying())backgroundMusic.play();
+    
     switch(currentScene) {
     case "TitleScreen":
       TitleScreen();
@@ -56,8 +58,6 @@ class GameManager {
   //------------------------------
 
   void SetupTitleScreen() {
-    //backgroundMusic.play();
-
     CubeManager.cubeList.clear();
     CubeManager.AddCubesRandom(100, (displayWidth - 100), -30000, -100, 100, 100, 0.2, 0.2, 10, 2000, 20);
     //BombManager.AddBomb(300, 300, 50, 50, 50, 50, 1, 1, 1);

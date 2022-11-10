@@ -62,6 +62,7 @@ class Bomb extends Shape {
       }
 
       if (AnimationExplosion.isDone == false) {
+        if(!boom.isPlaying())boom.play();
         AnimationExplosion.Play(PixelImageExplosion, 34, int(xPos) - 50, int(yPos) - 50);
       } else {
         canBeDeleted = true;
